@@ -3,7 +3,7 @@ import {graphql, StaticQuery, Link } from 'gatsby';
 import styled,{ createGlobalStyle } from 'styled-components';
 import SiteInfo from './SiteInfo';
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.header`
 display: flex;
 background-color: rgb(3, 27, 77)
 `

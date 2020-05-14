@@ -17,7 +17,7 @@ body{
   padding: 0 !important;
 }`
 
-const LayoutWrapper=styled.div`
+const LayoutWrapper=styled.main`
 max-width: 960px;
 margin: 0 auto;
 `
