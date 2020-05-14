@@ -4,8 +4,8 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Garett Petersen`,
+    description: `Interactive Experience With Modern Tech`,
     author: `@gatsbyjs`,
   },
   plugins: [
@@ -119,6 +119,8 @@ module.exports = {
           "**/tags",
           "**/taxonomies",
           "**/users",
+          "**/*/*/menus",
+          "**/*/*/menu-locations",
         ],
         // Blacklisted routes using glob patterns
         excludedRoutes: ["**/posts/1456"],

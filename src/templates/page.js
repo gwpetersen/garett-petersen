@@ -1,6 +1,8 @@
 import React from 'react'
+import Layout from '../components/layout';
 
 export default ({pageContext, content}) => (
+    <Layout>
     <div>
         <h1>
             {pageContext.title}
@@ -10,4 +12,5 @@ export default ({pageContext, content}) => (
         dangerouslySetInnerHTML={{__html:pageContext.content}}
     />
     </div>
+    </Layout>
 );
