@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, StaticQuery } from 'gatsby';
-import styled,{ createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 const SiteInfoWrapper = styled.div`
 flex-grow:1;

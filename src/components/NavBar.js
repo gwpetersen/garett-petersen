@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, StaticQuery, Link } from 'gatsby';
-import styled,{ createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import SiteInfo from './SiteInfo';
 
 const NavWrapper = styled.header`
