@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 const Hero = styled.section`
 /* Sizing */
-width: 80vw;
-height: 70vh;
+max-width: 100%;
+height: 60vh;
 /* Flexbox stuff */
 display: flex;
 justify-content: center;
@@ -39,7 +39,7 @@ font-family: sans-serif;
 const HeroButton = styled.a`
 /* Positioning and sizing */
     display: block;
-    width: 130px;
+    width: 160px;
     
     /* Padding and margins */
     padding: 1em;
@@ -53,8 +53,11 @@ const HeroButton = styled.a`
     font-size: 1.5em;
     
     /* Border styles */
-    border: 5px solid white; /* CHANGE THIS LINE */
-    border-radius: 20px;
+    border: 4px solid white; /* CHANGE THIS LINE */
+    border-radius: 15px;
+    :hover {
+      cursor: pointer;
+    }
 `
 
 const findHeroImage = (data) => {
@@ -87,9 +90,9 @@ const HeroImage = () => (
       <HeroBody>
         <Hero class="hero" image={findHeroImage(data)}>
           <div class="hero-inner">
-            <HeroHeader>Garett Petersen</HeroHeader>
+            <HeroHeader>Welcome</HeroHeader>
             <h2>Look at this website and bask in its amazing glory!</h2>
-            <HeroButton href="https://example.com/" class="btn">About Me...</HeroButton>
+            <HeroButton href="/about" class="btn">About Me...</HeroButton>
           </div>
         </Hero>
       </HeroBody>

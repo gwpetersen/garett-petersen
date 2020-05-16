@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, StaticQuery, Link } from 'gatsby';
+import {graphql, StaticQuery} from 'gatsby';
 import HeroImage from '../components/heroimage';
 import Layout from '../components/layout';
 import NavBar from '../components/NavBar';

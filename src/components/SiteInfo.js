@@ -10,6 +10,10 @@ margin: auto 0;
 
 const SiteTitle = styled.div`
 font-weight: bold;
+font-size: 2em;
+text-align: left;
+
+
 `
 
 const SiteInfo = () => (
@@ -26,10 +30,8 @@ const SiteInfo = () => (
 render={data => (
     <SiteInfoWrapper>
             <SiteTitle>
+              Garett Petersen
             </SiteTitle>
-            <div>
-                {data.site.siteMetadata.description}
-            </div>
     </SiteInfoWrapper>)
 }/>
 )
