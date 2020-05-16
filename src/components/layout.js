@@ -6,7 +6,6 @@
  */
 
 import React from "react"
-import NavBar from './NavBar'
 import styled,{ createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
@@ -26,7 +25,6 @@ const Layout = ({ children }) => {
   return (
       <div>
         <GlobalStyles />
-        <NavBar />
       <LayoutWrapper>
       {children}
       </LayoutWrapper>

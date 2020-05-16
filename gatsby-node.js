@@ -28,7 +28,6 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 slug
                 status
-                template
                 title
                 content
                 template

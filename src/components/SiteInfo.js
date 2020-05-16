@@ -26,7 +26,6 @@ const SiteInfo = () => (
 render={data => (
     <SiteInfoWrapper>
             <SiteTitle>
-                {data.site.siteMetadata.title}
             </SiteTitle>
             <div>
                 {data.site.siteMetadata.description}

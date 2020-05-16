@@ -5,20 +5,21 @@ import SiteInfo from './SiteInfo';
 
 const NavWrapper = styled.header`
 display: flex;
+width: 80vw;
 background-color: rgb(3, 27, 77)
 `
 const NavItem = styled(Link)`
 color: white;
 display: block;
-padding: 16px 16px;
+padding: 25px 25px;
 `
 
 const NavBarInner = styled.div`
-max-width: 960px;
 margin: 0 auto;
+text-align:center;
 display: flex;
-width: 960px;
-height: 100%;
+width: 80vw;
+height: 10vh;
 `
 
 const NavBar = () => (
