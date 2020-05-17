@@ -1,9 +1,93 @@
-import React from 'react';
-import {graphql, StaticQuery} from 'gatsby';
-import styled from 'styled-components';
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
+import styled from 'styled-components'
+import BackgroundImage from 'gatsby-background-image'
 
+const HeroHeader = styled.h1`
+{
+  font-size: 60px;
+  font-weight: 600;
+  color: grey;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+  box-sizing: border-box;
+  filter: brightness(100%);
+}
+`
+const HeroSubHeader = styled.h2`
+{
+  text-transform: capitalize;
+  color: grey;
+  letter-spacing: 1px;
+  font-size: 26px;
+  box-sizing: border-box;
+}
+`
 
-const Hero = styled.section`
+const HeroBody = styled.div`
+margin: 0;
+font-size: 100%;
+background: #fff;
+font-family: 'Source Sans Pro', sans-serif;
+`
+
+const HeroButton = styled.a`
+{
+  position: relative;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 40px;
+  font-weight: 400;
+  text-align: center;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+  cursor: pointer;
+  color: #fff;
+  background-color: #2F4F4F;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  text-decoration: none;
+  :hover {
+    filter: brightness(80%);
+}
+`
+
+const BackgroundSection = ({ className }) => (
+  <StaticQuery
+    query={graphql`
+      query {
+        desktop: file(relativePath: { eq: "heroImage.jpg" }) {
+          childImageSharp {
+            fluid(quality: 90, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      // Set ImageData.
+      const imageData = data.desktop.childImageSharp.fluid
+      return (
+        <HeroBody>
+          <BackgroundImage
+            Tag="section"
+            className={className}
+            fluid={imageData}
+            backgroundColor={`#040e18`}
+          >
+           <HeroButton href="/about" className="btn">About Me...</HeroButton>
+          </BackgroundImage>
+        </HeroBody>
+      )
+    }}
+  />
+)
+
+const StyledBackgroundSection = styled(BackgroundSection)`
 /* Sizing */
 max-width: 100%;
 height: 60vh;
@@ -20,85 +104,6 @@ background-position: center center;
 background-repeat: no-repeat;
 z-index : 1000;
 background-attachment: fixed;
-background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(${props => props.image});
 `
 
-const HeroHeader = styled.h1`
-/* Text styles */
-font-size: 4em;
-/* Margins */
-margin-top: 0;
-margin-bottom: 0.5em;
-`
-
-const HeroBody = styled.body`
-margin: 0;
-font-family: sans-serif;
-`
-
-const HeroButton = styled.a`
-/* Positioning and sizing */
-    display: block;
-    width: 160px;
-    
-    /* Padding and margins */
-    padding: 1em;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    
-    /* Text styles */
-    color: white; /* CHANGE THIS LINE */
-    text-decoration: none;
-    font-size: 1.5em;
-    
-    /* Border styles */
-    border: 4px solid white; /* CHANGE THIS LINE */
-    border-radius: 15px;
-    :hover {
-      cursor: pointer;
-    }
-`
-
-const findHeroImage = (data) => {
-  const filtered = data.allWordpressPage.edges.map(edge => {
-    return edge.node.jetpack_related_posts.filter(res => res.img.alt_text==="Home")
-  }).filter(finalSet => finalSet.length>0)
-  return filtered[0][0].img.src
-
-}
-
-
-const HeroImage = () => (
-    <StaticQuery 
-    query={graphql`{
-      allWordpressPage {
-        edges {
-          node {
-            jetpack_related_posts {
-              img {
-                src
-                alt_text
-              }
-            }
-          }
-        }
-      }
-    }       
-`}
-    render={data => (
-      <HeroBody>
-        <Hero class="hero" image={findHeroImage(data)}>
-          <div class="hero-inner">
-            <HeroHeader>Welcome</HeroHeader>
-            <h2>Look at this website and bask in its amazing glory!</h2>
-            <HeroButton href="/about" class="btn">About Me...</HeroButton>
-          </div>
-        </Hero>
-      </HeroBody>
-    )}
-
-
-/>)
-
-export default HeroImage;
+export default StyledBackgroundSection

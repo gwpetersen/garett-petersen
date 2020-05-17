@@ -9,9 +9,9 @@ import React from "react"
 import styled,{ createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swa"');
 body{
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Playfair Display', serif;
   margin: 0 !important;
   padding: 0 !important;
 }`
