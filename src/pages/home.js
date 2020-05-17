@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import Layout from '../components/layout';
 import NavBar from '../components/NavBar';
-import HeroImage from '../components/heroImage';
+import StyledBackgroundSection from '../components/heroImage';
 
 
 const HomePage = () => (
@@ -21,7 +21,7 @@ const HomePage = () => (
     render={data => (
       <Layout>
         <NavBar />
-        <HeroImage />
+        <StyledBackgroundSection />
         <main>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec nibh molestie, efficitur leo sed, viverra nunc. Donec vehicula accumsan erat facilisis ullamcorper. Donec commodo quis dui nec placerat. Donec mi orci, scelerisque eget nisl ac, hendrerit condimentum odio. Nam dictum odio eget quam tempus, a mattis odio ornare. Nullam auctor libero ut libero suscipit, ut accumsan nunc condimentum. Donec ullamcorper maximus sapien quis egestas.</p>
 
