@@ -1,7 +1,7 @@
 import React from 'react';
 import {graphql, StaticQuery, Link } from 'gatsby';
 import styled from 'styled-components';
-import Logo from './Logo';
+import Logo from './logo';
 
 const NavWrapper = styled.header`
 display: flex;

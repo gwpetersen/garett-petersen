@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import Layout from '../components/layout';
-import NavBar from '../components/NavBar';
-import SyledHeroImage from '../components/HeroImage';
+import NavBar from '../components/navbar';
+import SyledHeroImage from '../components/heroimage';
 
 
 const HomePage = () => (
