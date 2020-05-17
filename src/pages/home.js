@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import Layout from '../components/layout';
 import NavBar from '../components/NavBar';
-import HeroImage from '../components/HeroImage';
+import HeroImage from '../components/heroimage';
 
 
 const HomePage = () => (
