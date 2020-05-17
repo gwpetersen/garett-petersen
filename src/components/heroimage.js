@@ -87,7 +87,7 @@ const BackgroundSection = ({ className }) => (
   />
 )
 
-const SyledHeroImage = styled(BackgroundSection)`
+const HeroImage = styled(BackgroundSection)`
 /* Sizing */
 max-width: 100%;
 height: 60vh;
@@ -106,4 +106,4 @@ z-index : 1000;
 background-attachment: fixed;
 `
 
-export default SyledHeroImage
+export default HeroImage
