@@ -3,25 +3,25 @@ import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image'
 
-const HeroHeader = styled.h1`
-{
-  font-size: 60px;
-  font-weight: 600;
-  color: grey;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
-  box-sizing: border-box;
-  filter: brightness(100%);
-}
-`
-const HeroSubHeader = styled.h2`
-{
-  text-transform: capitalize;
-  color: grey;
-  letter-spacing: 1px;
-  font-size: 26px;
-  box-sizing: border-box;
-}
-`
+// const HeroHeader = styled.h1`
+// {
+//   font-size: 60px;
+//   font-weight: 600;
+//   color: grey;
+//   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+//   box-sizing: border-box;
+//   filter: brightness(100%);
+// }
+// `
+// const HeroSubHeader = styled.h2`
+// {
+//   text-transform: capitalize;
+//   color: grey;
+//   letter-spacing: 1px;
+//   font-size: 26px;
+//   box-sizing: border-box;
+// }
+// `
 
 const HeroBody = styled.div`
 margin: 0;
@@ -59,7 +59,7 @@ const BackgroundSection = ({ className }) => (
   <StaticQuery
     query={graphql`
       query {
-        desktop: file(relativePath: { eq: "heroImage.jpg" }) {
+        desktop: file(relativePath: { eq: "hero-image.jpg" }) {
           childImageSharp {
             fluid(quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
@@ -79,7 +79,7 @@ const BackgroundSection = ({ className }) => (
             fluid={imageData}
             backgroundColor={`#040e18`}
           >
-           <HeroButton href="/about" className="btn">About Me...</HeroButton>
+           <HeroButton href="/about">About Me...</HeroButton>
           </BackgroundImage>
         </HeroBody>
       )
@@ -87,7 +87,7 @@ const BackgroundSection = ({ className }) => (
   />
 )
 
-const StyledBackgroundSection = styled(BackgroundSection)`
+const SyledHeroImage = styled(BackgroundSection)`
 /* Sizing */
 max-width: 100%;
 height: 60vh;
@@ -106,4 +106,4 @@ z-index : 1000;
 background-attachment: fixed;
 `
 
-export default StyledBackgroundSection
+export default SyledHeroImage
