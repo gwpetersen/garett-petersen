@@ -21,7 +21,7 @@ margin: 0;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 `
-const HeroButton = styled.button`
+const HeroButton = styled.a`
   position: relative;
   display: inline-block;
   border: 1px solid;
@@ -49,7 +49,7 @@ const HeroButton = styled.button`
 const HeroImage = () =>(
         <Jumbotron id="hero-image" style={HeroImageStyle}>
           <ButtonContainer id="button_container">
-          <HeroButton href="/about">About Me...</HeroButton>
+          <HeroButton href="/about/">About Me...</HeroButton>
           </ButtonContainer>
         </Jumbotron>
       )
