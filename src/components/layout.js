@@ -1,13 +1,8 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
 
 import React from "react"
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './header';
+import Footer from './footer';
 
 const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swa"');
@@ -30,6 +25,7 @@ const Layout = ({ children }) => {
       <LayoutWrapper>
       <Header/>
         {children}
+      <Footer/>
       </LayoutWrapper>
     </div>
   )

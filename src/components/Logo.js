@@ -2,7 +2,6 @@ import React from "react"
 import styled from 'styled-components'
 import mainLogo from '../images/nameLogo.png';
 
-
 const LogoContainer = styled.a`
 float: left;
 `

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 import NavBar from './NavBar';
-
+import logo from '../images/nameLogo.png';
 
 const Header = () => (
   <header
@@ -10,15 +10,24 @@ const Header = () => (
       marginBottom: `1.45rem`,
     }}
   >
-      <div
+    <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
       }}
     >
-     <NavBar/>
-     </div>
+      <a href="/home">
+        <img
+          src={logo}
+          width="240"
+          height="120"
+          className="d-inline-block align-top"
+          alt="logo"
+        />
+      </a>
+      <NavBar />
+    </div>
   </header>
 )
 

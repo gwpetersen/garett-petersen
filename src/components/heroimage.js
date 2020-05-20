@@ -3,11 +3,14 @@ import heroImage from '../images/hero-image.jpg'
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import styled from 'styled-components'
 
-
 const HeroImageStyle = {
   "backgroundImage": `url(${heroImage})`,
   "backgroundSize": 'cover',
-  "height": `60vh`
+  "height": `45vh`,
+  "background-position": "center",
+  "background-repeat": "no-repeat",
+  "background-size": "cover",
+  "position": "relative",
 }
 
 const ButtonContainer = styled.div`
@@ -41,22 +44,19 @@ const HeroButton = styled.a`
   text-decoration: none;
   :hover {
     filter: brightness(80%);
-      color:white; 
-      text-decoration:none; 
-      cursor:pointer;  
- 
-}
+    color:white; 
+    text-decoration:none; 
+    cursor:pointer;
+  }
 `
 
-
-
 const HeroImage = () =>(
-        <Jumbotron id="hero-image" style={HeroImageStyle}>
-          <ButtonContainer id="button_container">
-          <HeroButton href="/about">About Me...</HeroButton>
-          </ButtonContainer>
-        </Jumbotron>
-      )
+  <Jumbotron id="hero-image" style={HeroImageStyle}>
+    <ButtonContainer id="button_container">
+      <HeroButton href="/about">About Me...</HeroButton>
+    </ButtonContainer>
+  </Jumbotron>
+  )
     
 
 export default HeroImage

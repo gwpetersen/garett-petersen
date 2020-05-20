@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
-import logo from '../images/nameLogo.png';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components'
 
@@ -34,20 +33,11 @@ const NavBarComponent = () => (
 `}
     render={data => (
       <Navbar expand="lg">
-        <Navbar.Brand href="/home">
-          <img
-            src={logo}
-            width="200"
-            height="70"
-            className="d-inline-block align-top"
-            alt="logo"
-          />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="ml-auto"/>
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="ml-auto">
             {data.allWordpressPage.edges.map(edges => (
-              <NavItem href={`/${edges.node.slug}`} key={`${edges.node.slug}-key`} id="nav-item">
+              <NavItem href={`/${edges.node.slug}`} key={`${edges.node.slug}-key`} id="nav-item" className="ml-auto">
                 {edges.node.title}
                 </NavItem>
             ))}
