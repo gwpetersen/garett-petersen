@@ -1,49 +1,13 @@
 import React from 'react';
-import {graphql, StaticQuery, Link } from 'gatsby';
-import styled from 'styled-components';
-import Logo from './Logo';
+import { graphql, StaticQuery } from 'gatsby';
+import logo from '../images/nameLogo.png';
+import styles from './navbar.css';
+import { Navbar, Nav } from 'react-bootstrap';
 
-const NavWrapper = styled.header`
-display: flex;
-max-width: 100%;
-max-height: 100px;
-height: 100px;
-background-color: white
-`
-const NavItem = styled(Link)`
-flex: 0 0 auto;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  -webkit-tap-highlight-color: transparent;
-  align-items: right;
-  color: #999;
-  height: 100%;
-  justify-content: center;
-  text-decoration: none;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  -webkit-tap-highlight-color: transparent;
-  align-items: center;
-  color: inherit;
-  display: flex;
-  font-size: 18px;
-  height: 100px;
-  justify-content: center;
-  line-height: 16px;
-  margin: 0 10px ;
-  white-space: nowrap;
-`
 
-const NavBarInner = styled.div`
-margin: 0 auto;
-text-align:center;
-display: flex;
-width: 60vw;
-height: 6vh;
-`
 
-const NavBar = () => (
-    <StaticQuery 
+const NavBarComponent = () => (
+  <StaticQuery
     query={graphql`{
         allWordpressPage {
           edges {
@@ -54,19 +18,44 @@ const NavBar = () => (
           }
         }
       }
-`} 
-render={data => (
-    <NavWrapper>
-      <Logo/>
-        <NavBarInner>
-        {data.allWordpressPage.edges.map(edges => (
-            <NavItem to={edges.node.slug} key={edges.node.title}>
+`}
+    render={data => (
+      <Navbar expand="lg">
+        <Navbar.Brand href="/home">
+          <img
+            src={logo}
+            width="200"
+            height="70"
+            className="d-inline-block align-top"
+            alt="logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            {data.allWordpressPage.edges.map(edges => (
+              <Nav.Link href={edges.node.slug} id="nav-item">
                 {edges.node.title}
-            </NavItem>
-    ))}
-    </NavBarInner>
-    </NavWrapper>
-)}/>
+                </Nav.Link>
+            ))}
+          </Nav>
+
+        </Navbar.Collapse>
+
+      </Navbar>
+      // <NavWrapper>
+      //     <NavBarInner id="nav-menu">
+      //     {data.allWordpressPage.edges.map(edges => (
+      //       <NavList>
+      //         <NavItem to={edges.node.slug} key={edges.node.title}>
+      //             {edges.node.title}
+      //         </NavItem>
+      //       </NavList>
+
+      // ))}
+      // </NavBarInner>
+      // </NavWrapper>
+    )} />
 )
 
-export default NavBar;
+export default NavBarComponent;

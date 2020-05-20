@@ -1,32 +1,24 @@
 import React from "react"
 import styled from 'styled-components'
-import mainLogo from '../images/logo.png';
+import mainLogo from '../images/nameLogo.png';
 
 
 const LogoContainer = styled.a`
-margin: 0 auto;
-text-align:center;
-display: flex;
-width: 60vw;
-height: 6vh;
+float: left;
 `
 
 const LogoImage = styled.img`
-{
-  text-indent: -100px;
-  margin-right: 4rem;
-  overflow: hidden;
-  width: 200px;
-  height: 100px;
-  background: url(${mainLogo}) no-repeat 0 0;
-  background-size: cover;
-}
+text-indent: -9999px;
+width: 140px;
+height: 80px;
+background: url(${mainLogo});
+background-size: 150px 100px;
 `
 
 const Logo = () => {
   return (
   <LogoContainer href='/home'>
-      <LogoImage  src={mainLogo} alt="fireSpot"/>
+      <LogoImage/>
   </LogoContainer>
   )
 }
