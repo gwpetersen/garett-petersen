@@ -2,9 +2,23 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import logo from '../images/nameLogo.png';
 import { Navbar, Nav } from 'react-bootstrap';
+import styled from 'styled-components'
 
 
-
+const NavItem = styled.a`
+color: black;
+font-family: 'Playfair Display',serif;
+font-size: large;
+display: block;
+padding: 8px;
+text-decoration: none;
+:hover 
+{
+     color:black; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+`
 const NavBarComponent = () => (
   <StaticQuery
     query={graphql`{
@@ -33,9 +47,9 @@ const NavBarComponent = () => (
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {data.allWordpressPage.edges.map(edges => (
-              <Nav.Link href={`${edges.node.slug}/`} id="nav-item">
+              <NavItem href={`${edges.node.slug}`} id="nav-item">
                 {edges.node.title}
-                </Nav.Link>
+                </NavItem>
             ))}
           </Nav>
         </Navbar.Collapse>
