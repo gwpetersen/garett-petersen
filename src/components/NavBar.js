@@ -47,7 +47,7 @@ const NavBarComponent = () => (
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {data.allWordpressPage.edges.map(edges => (
-              <NavItem href={`${edges.node.slug}`} key={`${edges.node.slug}-key`} id="nav-item">
+              <NavItem href={`/${edges.node.slug}`} key={`${edges.node.slug}-key`} id="nav-item">
                 {edges.node.title}
                 </NavItem>
             ))}
