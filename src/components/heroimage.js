@@ -41,6 +41,10 @@ const HeroButton = styled.a`
   text-decoration: none;
   :hover {
     filter: brightness(80%);
+      color:white; 
+      text-decoration:none; 
+      cursor:pointer;  
+ 
 }
 `
 
@@ -49,7 +53,7 @@ const HeroButton = styled.a`
 const HeroImage = () =>(
         <Jumbotron id="hero-image" style={HeroImageStyle}>
           <ButtonContainer id="button_container">
-          <HeroButton href="/about/">About Me...</HeroButton>
+          <HeroButton href="/about">About Me...</HeroButton>
           </ButtonContainer>
         </Jumbotron>
       )
