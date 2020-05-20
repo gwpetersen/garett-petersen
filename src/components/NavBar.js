@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import logo from '../images/nameLogo.png';
-import styles from './navbar.css';
 import { Navbar, Nav } from 'react-bootstrap';
 
 
@@ -39,22 +38,8 @@ const NavBarComponent = () => (
                 </Nav.Link>
             ))}
           </Nav>
-
         </Navbar.Collapse>
-
       </Navbar>
-      // <NavWrapper>
-      //     <NavBarInner id="nav-menu">
-      //     {data.allWordpressPage.edges.map(edges => (
-      //       <NavList>
-      //         <NavItem to={edges.node.slug} key={edges.node.title}>
-      //             {edges.node.title}
-      //         </NavItem>
-      //       </NavList>
-
-      // ))}
-      // </NavBarInner>
-      // </NavWrapper>
     )} />
 )
 
