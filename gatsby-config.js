@@ -1,12 +1,16 @@
 require("dotenv").config({
   path: `.env`,
 })
+const {
+  AWS_ACCESS_KEY_ID: accessKeyId,
+  AWS_SECRET_ACCESS_KEY: secretAccessKey,
+} = process.env
 
 module.exports = {
   siteMetadata: {
     title: `Garett Petersen`,
     description: `Interactive Experience With Modern Tech`,
-    author: `@gatsbyjs`,
+    author: `Garett Petersen`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,12 +34,22 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-s3",
+      options: {
+        aws: {
+          accessKeyId: accessKeyId,
+          secretAccessKey: secretAccessKey,
+        },
+        buckets: ["garett.petersen.media"],
+      },
+    },
+    {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /assets/
-        }
-      }
+          include: /assets/,
+        },
+      },
     },
     {
       resolve: "gatsby-source-wordpress",

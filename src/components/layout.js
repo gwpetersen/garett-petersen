@@ -1,5 +1,5 @@
-
-import React from "react"
+import PropTypes from 'prop-types';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './header';
 import Footer from './footer';
@@ -10,26 +10,30 @@ body{
   font-family: 'Playfair Display', serif;
   margin: 0 !important;
   padding: 0 !important;
-}`
-
+}`;
 
 const LayoutWrapper = styled.main`
-max-width: 960px;
-margin: 0 auto;
-`
+  max-width: 960px;
+  margin: 0 auto;
+`;
 
-const Layout = ({ children }) => {
-  return (
-    <div>
-      <GlobalStyles />
-      <LayoutWrapper>
-      <Header/>
-        {children}
-      <Footer/>
-      </LayoutWrapper>
-    </div>
-  )
-}
+const Layout = ({ children }) => (
+  <div>
+    <GlobalStyles />
+    <LayoutWrapper>
+      <Header />
+      {children}
+      <Footer />
+    </LayoutWrapper>
+  </div>
+);
 
+Layout.propTypes = {
+  children: PropTypes.string,
+};
 
-export default Layout
+Layout.defaultProps = {
+  children: '',
+};
+
+export default Layout;
