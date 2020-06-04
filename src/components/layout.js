@@ -15,21 +15,20 @@ body{
 const LayoutWrapper = styled.main`
   max-width: 960px;
   margin: 0 auto;
+  height: auto !important;
 `;
 
 const Layout = ({ children }) => (
   <div>
     <GlobalStyles />
-    <LayoutWrapper>
-      <Header />
-      {children}
-      <Footer />
-    </LayoutWrapper>
+    <Header />
+    <LayoutWrapper>{children}</LayoutWrapper>
+    <Footer />
   </div>
 );
 
 Layout.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.array,
 };
 
 Layout.defaultProps = {

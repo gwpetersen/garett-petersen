@@ -44,6 +44,15 @@ const NavBarComponent = () => (
             >
               Gallery
             </NavItem>
+            <NavItem
+              href="/post"
+              key="post"
+              id="nav-item"
+              style={{ fontSize: '1.3rem' }}
+              className="ml-auto"
+            >
+              Post
+            </NavItem>
             {data.allWordpressPage.edges.map(edges => (
               <NavItem
                 href={`/${edges.node.slug}`}
@@ -61,6 +70,5 @@ const NavBarComponent = () => (
     )}
   />
 );
-
 
 export default NavBarComponent;

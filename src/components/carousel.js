@@ -10,6 +10,7 @@ const CarouselHero = () => (
         allS3Image {
           edges {
             node {
+              Key
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 3080, quality: 100) {
@@ -26,7 +27,7 @@ const CarouselHero = () => (
     render={data => (
       <Carousel>
         {data.allS3Image.edges.map(({ node }) => (
-          <Carousel.Item>
+          <Carousel.Item key={`image-${node.Key}`}>
             <Image
               fluid={node.localFile.childImageSharp.fluid}
               sizes={{
