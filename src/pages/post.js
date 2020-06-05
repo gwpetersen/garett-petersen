@@ -62,7 +62,7 @@ const AllPost = () => (
       <Layout>
         <ListGroup>
           {data.allWordpressPost.edges.map(edge => (
-            <ListItem href={`post/${edge.node.slug}`} key={edge.node.slug}>
+            <ListItem href={`/post/${edge.node.slug}`} key={edge.node.slug}>
               <ListGroup.Item action>
                 <CustomHeader>
                   {edge.node.title.replace(/&nbsp;/g, ' ')}
