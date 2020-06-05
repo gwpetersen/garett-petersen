@@ -1,7 +1,7 @@
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import { Card } from 'react-bootstrap';
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
+import { Card } from "react-bootstrap"
 
 const BuiltSiteImage = () => {
   const data = useStaticQuery(graphql`
@@ -14,7 +14,7 @@ const BuiltSiteImage = () => {
         }
       }
     }
-  `);
+  `)
 
   return (
     <Card>
@@ -27,7 +27,7 @@ const BuiltSiteImage = () => {
         </Card.Text>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default BuiltSiteImage;
+export default BuiltSiteImage

@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
-import { Carousel } from 'react-bootstrap';
-import Image from 'gatsby-image';
+import React from "react"
+import { graphql, StaticQuery } from "gatsby"
+import { Carousel } from "react-bootstrap"
+import Image from "gatsby-image"
 
 const CarouselHero = () => (
   <StaticQuery
@@ -40,6 +40,6 @@ const CarouselHero = () => (
       </Carousel>
     )}
   />
-);
+)
 
-export default CarouselHero;
+export default CarouselHero

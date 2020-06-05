@@ -1,18 +1,18 @@
-import React from 'react';
-import { Container, ListGroup } from 'react-bootstrap';
-import { SocialIcon } from 'react-social-icons';
-import styled from 'styled-components';
+import React from "react"
+import { Container, ListGroup } from "react-bootstrap"
+import { SocialIcon } from "react-social-icons"
+import styled from "styled-components"
 
 const customStyle = {
-  display: 'flex',
-  height: '80px',
-  justifyContent: 'center',
-  padding: '2rem 0px',
-  borderTop: '1px solid rgb(229, 229, 229)',
-  borderTopWidth: '2px',
-  borderTopStyle: 'solid',
-  borderTopColor: 'rgb(229, 229, 229)',
-};
+  display: "flex",
+  height: "80px",
+  justifyContent: "center",
+  padding: "2rem 0px",
+  borderTop: "1px solid rgb(229, 229, 229)",
+  borderTopWidth: "2px",
+  borderTopStyle: "solid",
+  borderTopColor: "rgb(229, 229, 229)",
+}
 
 const CopyRight = styled.a`
   color: black;
@@ -26,7 +26,7 @@ const CopyRight = styled.a`
     color: inherit;
     text-decoration: none;
   }
-`;
+`
 const Footer = () => (
   <footer>
     <Container fluid style={customStyle}>
@@ -59,12 +59,12 @@ const Footer = () => (
     </Container>
     <div
       className="footer-copyright text-center py-3"
-      style={{ fontSize: '1.2rem' }}
+      style={{ fontSize: "1.2rem" }}
     >
       © 2020 Copyright:
       <CopyRight href="/home"> Garett Petersen</CopyRight>
     </div>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

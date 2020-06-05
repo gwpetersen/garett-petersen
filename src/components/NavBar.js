@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
-import { Navbar, Nav } from 'react-bootstrap';
-import styled from 'styled-components';
+import React from "react"
+import { graphql, StaticQuery } from "gatsby"
+import { Navbar, Nav } from "react-bootstrap"
+import styled from "styled-components"
 
 const NavItem = styled.a`
   color: black;
@@ -15,7 +15,7 @@ const NavItem = styled.a`
     text-decoration: none;
     cursor: pointer;
   }
-`;
+`
 const NavBarComponent = () => (
   <StaticQuery
     query={graphql`
@@ -39,7 +39,7 @@ const NavBarComponent = () => (
               href="/gallery"
               key="gallery-key"
               id="nav-item"
-              style={{ fontSize: '1.3rem' }}
+              style={{ fontSize: "1.3rem" }}
               className="ml-auto"
             >
               Gallery
@@ -48,7 +48,7 @@ const NavBarComponent = () => (
               href="/post"
               key="post"
               id="nav-item"
-              style={{ fontSize: '1.3rem' }}
+              style={{ fontSize: "1.3rem" }}
               className="ml-auto"
             >
               Post
@@ -58,7 +58,7 @@ const NavBarComponent = () => (
                 href={`/${edges.node.slug}`}
                 key={`${edges.node.slug}-key`}
                 id="nav-item"
-                style={{ fontSize: '1.3rem' }}
+                style={{ fontSize: "1.3rem" }}
                 className="ml-auto"
               >
                 {edges.node.title}
@@ -69,6 +69,6 @@ const NavBarComponent = () => (
       </Navbar>
     )}
   />
-);
+)
 
-export default NavBarComponent;
+export default NavBarComponent

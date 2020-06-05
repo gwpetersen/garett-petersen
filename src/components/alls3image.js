@@ -1,6 +1,6 @@
-import Img from 'gatsby-image';
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import Img from "gatsby-image"
+import React from "react"
+import { graphql, StaticQuery } from "gatsby"
 
 const S3Image = props => (
   <StaticQuery
@@ -26,14 +26,16 @@ const S3Image = props => (
       }
     `}
     render={data => {
-      const image = data.images.edges.find(n => n.node.Key.includes(props.filename));
+      const image = data.images.edges.find(n =>
+        n.node.Key.includes(props.filename)
+      )
       if (!image) {
-        return null;
+        return null
       }
-      const imageSizes = image.node.localFile.childImageSharp.fixed;
-      return <Img alt={props.alt} fixed={imageSizes} />;
+      const imageSizes = image.node.localFile.childImageSharp.fixed
+      return <Img alt={props.alt} fixed={imageSizes} />
     }}
   />
-);
+)
 
-export default S3Image;
+export default S3Image
