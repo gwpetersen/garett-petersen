@@ -64,7 +64,7 @@ const HomePage = () => (
         n.slug.includes("hawaii")
       )
       const hawaiiImg = data.allS3Image.nodes.find(n =>
-        n.Key.includes("hawaiiwaipiovalley.JPG")
+        n.Key.includes("hawaii-waipio-valley.jpg")
       )
       const cancunPost = data.allWordpressPost.nodes.find(n =>
         n.slug.includes("cancun")
