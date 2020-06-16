@@ -15,8 +15,8 @@ const S3Image = props => (
                 relativePath
                 name
                 childImageSharp {
-                  fixed(width: 300, quality: 100) {
-                    ...GatsbyImageSharpFixed
+                  fluid(quality: 100) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -32,8 +32,14 @@ const S3Image = props => (
       if (!image) {
         return null
       }
-      const imageSizes = image.node.localFile.childImageSharp.fixed
-      return <Img alt={props.alt} fixed={imageSizes} />
+      const imageSizes = image.node.localFile.childImageSharp.fluid
+      return (
+        <Img
+          alt={props.alt}
+          fluid={imageSizes}
+          style={{ maxHeight: `400px` }}
+        />
+      )
     }}
   />
 )

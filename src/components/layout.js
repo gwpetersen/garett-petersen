@@ -27,12 +27,4 @@ const Layout = ({ children }) => (
   </div>
 )
 
-Layout.propTypes = {
-  children: PropTypes.array,
-}
-
-Layout.defaultProps = {
-  children: "",
-}
-
 export default Layout

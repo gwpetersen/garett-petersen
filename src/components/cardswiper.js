@@ -44,8 +44,7 @@ const CoverflowEffect = props => {
                 className="swiper-slide"
                 image={node.Url}
                 style={{ backgroundImage: `url(${node.Url}` }}
-              >
-              </SwiperSlide>
+              ></SwiperSlide>
             </div>
             <div className="swiper-pagination"></div>
           </CardPostLink>

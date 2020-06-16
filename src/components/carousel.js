@@ -15,7 +15,6 @@ const CarouselHero = () => (
                 childImageSharp {
                   fluid(maxWidth: 3080, quality: 100) {
                     ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
                   }
                 }
               }

@@ -37,6 +37,13 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-s3-image",
+      options: {
+        bucketName: "garett.petersen.media",
+        protocol: "http", // [optional] Default to `https`.
+      },
+    },
+    {
       resolve: "gatsby-source-s3",
       options: {
         aws: {
