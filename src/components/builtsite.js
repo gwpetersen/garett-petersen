@@ -17,7 +17,7 @@ const BuiltSiteImage = () => {
   `)
 
   return (
-    <Card>
+    <Card style={{ marginBottom: '2rem'}}>
       <Img fluid={data.placeholderImage.childImageSharp.fluid} />
       <Card.Body>
         <Card.Text>
