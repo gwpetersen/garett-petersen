@@ -5,8 +5,9 @@ import BuiltSiteImage from "../components/builtsite"
 import styled from "styled-components"
 
 const Container = styled.div`
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
   box-sizing: border-box;
   display: block;
 `
@@ -18,8 +19,8 @@ export default ({ pageContext }) => {
         <Layout>
           <Container>
             <BuiltSiteImage />
+            <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
-          <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
       )
     case "balboa-park":
@@ -27,8 +28,8 @@ export default ({ pageContext }) => {
         <Layout>
           <Container>
             <S3Image filename="huntington-library.jpg" />
+            <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
-          <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
       )
     case "hawaii":
@@ -36,9 +37,8 @@ export default ({ pageContext }) => {
         <Layout>
           <Container>
             <S3Image filename="hawaii-waipio-valley-2.jpg" />
+            <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
-
-          <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
       )
     case "cancun":
@@ -46,9 +46,8 @@ export default ({ pageContext }) => {
         <Layout>
           <Container>
             <S3Image filename="cancun1.jpg" />
+            <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
-
-          <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
       )
     default:

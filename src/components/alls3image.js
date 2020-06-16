@@ -37,7 +37,7 @@ const S3Image = props => (
         <Img
           alt={props.alt}
           fluid={imageSizes}
-          style={{ maxHeight: `400px` }}
+          style={{ maxHeight: `400px`, marginBottom: '1em' }}
         />
       )
     }}
