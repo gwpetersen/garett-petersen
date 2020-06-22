@@ -190,6 +190,7 @@ module.exports = {
         // Add any options here
       },
     },
+    
     `gatsby-plugin-netlify`,
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",

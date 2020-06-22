@@ -1,10 +1,18 @@
 import React from "react"
 import Layout from "../components/layout"
-import S3Image from "../components/alls3image"
+
+import styled from "styled-components"
+
+const Container = styled.div`
+  margin-bottom: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
+  box-sizing: border-box;
+  display: block;
+`
 
 export default ({ pageContext }) => (
   <Layout>
-    <S3Image filename="cancun1.jpg" />
-    <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
+    <Container dangerouslySetInnerHTML={{ __html: pageContext.content }} />
   </Layout>
 )

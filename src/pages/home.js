@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { ListGroup } from "react-bootstrap"
 import styled from "styled-components"
 import Layout from "../components/layout"
 import HeroCarousel from "../components/carousel"
@@ -36,7 +35,9 @@ const Header = styled.header`
 const HoverImg = styled.div`
   transition: transform 0.2s ease;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    opacity: 0.5;
+    cursor: pointer;
   }
 `
 
@@ -105,11 +106,9 @@ const HomePage = () => (
                 <H2>How I Built My Site</H2>
               </Header>
               <HoverImg>
-                <ListGroup.Item action>
                   <BuiltSiteLink href="/post/how-i-built-my-site">
                     <BuiltSiteImage />
                   </BuiltSiteLink>
-                </ListGroup.Item>
               </HoverImg>
             </div>
           </main>
