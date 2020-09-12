@@ -54,7 +54,7 @@ export default ({ pageContext }) => {
       return (
         <Layout>
           <Container>
-            <S3Image filename="cancun1.jpg" />
+            <S3Image filename="default.jpg" />
           </Container>
           <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
