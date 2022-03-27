@@ -1,7 +1,7 @@
-import React from "react"
-import { graphql, StaticQuery } from "gatsby"
-import { Carousel } from "react-bootstrap"
-import Image from "gatsby-image"
+import React from 'react';
+import { graphql, StaticQuery } from 'gatsby';
+import { Carousel } from 'react-bootstrap';
+import Image from 'gatsby-image';
 
 const CarouselHero = () => (
   <StaticQuery
@@ -28,8 +28,7 @@ const CarouselHero = () => (
         {data.allS3Image.edges.map(({ node }) => (
           <Carousel.Item key={`image-${node.Key}`}>
             <Image
-              fluid={node.localFile.childImageSharp.fluid}
-              sizes={{
+              fluid={{
                 ...node.localFile.childImageSharp.fluid,
                 aspectRatio: 16 / 9,
               }}
@@ -39,6 +38,6 @@ const CarouselHero = () => (
       </Carousel>
     )}
   />
-)
+);
 
-export default CarouselHero
+export default CarouselHero;

@@ -1,7 +1,7 @@
-import React from "react"
-import "./gallery.css"
-import { graphql, StaticQuery } from "gatsby"
-import Image from "gatsby-image"
+import React from 'react';
+import './gallery.css';
+import { graphql, StaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
 
 const Gallery = () => (
   <StaticQuery
@@ -29,11 +29,11 @@ const Gallery = () => (
               <Image
                 fluid={node.childImageSharp.fluid}
                 style={{
-                  display: "flex",
-                  width: "100%",
-                  height: "100%",
-                  maxHeight: "500px",
-                  "object-fit": "cover",
+                  display: 'flex',
+                  width: '100%',
+                  height: '100%',
+                  maxHeight: '500px',
+                  'object-fit': 'cover',
                 }}
               />
             </div>
@@ -42,5 +42,5 @@ const Gallery = () => (
       </div>
     )}
   />
-)
-export default Gallery
+);
+export default Gallery;

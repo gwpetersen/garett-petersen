@@ -1,19 +1,19 @@
-import React from "react"
-import NavBar from "./NavBar"
-import logo from "../images/nameLogo.png"
+import React from 'react';
+import NavBar from './NavBar';
+import logo from '../images/nameLogo.png';
 
 const Header = () => (
   <header
     style={{
-      background: "white",
-      marginBottom: "1.45rem",
+      background: 'white',
+      marginBottom: '1.45rem',
     }}
   >
     <div
       style={{
-        margin: "0 auto",
+        margin: '0 auto',
         maxWidth: 960,
-        padding: "1.45rem 1.0875rem",
+        padding: '1.45rem 1.0875rem',
       }}
     >
       <a href="/home">
@@ -28,6 +28,6 @@ const Header = () => (
       <NavBar />
     </div>
   </header>
-)
+);
 
-export default Header
+export default Header;
