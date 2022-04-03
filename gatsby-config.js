@@ -40,6 +40,10 @@ module.exports = {
       resolve: "gatsby-source-s3-image",
       options: {
         bucketName: "garett.petersen.media",
+        aws: {
+          accessKeyId: accessKeyId,
+          secretAccessKey: secretAccessKey,
+        },
         protocol: "http", // [optional] Default to `https`.
       },
     },
@@ -190,10 +194,9 @@ module.exports = {
         // Add any options here
       },
     },
-    
+    "gatsby-plugin-sharp",
     `gatsby-plugin-netlify`,
     "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
     `gatsby-background-image`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

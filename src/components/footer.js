@@ -44,12 +44,6 @@ const Footer = () => (
           style={{ height: 40, width: 40 }}
         />
         <SocialIcon
-          key="facebook-key"
-          url="https://www.facebook.com/garett.petersen.3"
-          className="list-inline-item"
-          style={{ height: 40, width: 40 }}
-        />
-        <SocialIcon
           key="github-key"
           url="https://github.com/gwpetersen"
           style={{ height: 40, width: 40 }}
