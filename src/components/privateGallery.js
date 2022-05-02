@@ -13,16 +13,16 @@ const ImageItem = styled.div`
     cursor: pointer;
   }
 `;
-function Gallery(props) {
+function PrivateGallery() {
   const [showBox, setShowBox] = React.useState(false);
   const [images, setImages] = React.useState([]);
   const [photoIndex, setPhotoIndex] = React.useState(0);
   const [imageLength, setImageLength] = React.useState(0);
 
-  const open = ({ data, index }, e) => {
-    const imageLength = data.allS3ImageAsset.edges.length;
+  const open = ({ data, index }) => {
+    const length = data.allS3ImageAsset.edges.length;
     setImages(data.allS3ImageAsset.edges);
-    setImageLength(imageLength);
+    setImageLength(length);
     setShowBox(true);
     setPhotoIndex(index);
   };
@@ -48,7 +48,7 @@ function Gallery(props) {
       render={data => (
         <div>
           <div className="image-grid">
-            {data.allS3ImageAsset.edges.filter(({ node }) => !node.Key.includes('private')).map(({ node }, index) => (
+            {data.allS3ImageAsset.edges.filter(({ node }) => node.Key.includes('private')).map(({ node }, index) => (
               <ImageItem
                 className="image-item"
                 id={node.Key}
@@ -91,4 +91,4 @@ function Gallery(props) {
     />
   );
 }
-export default Gallery;
+export default PrivateGallery;

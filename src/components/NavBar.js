@@ -1,7 +1,10 @@
 import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import {
+  graphql, StaticQuery, Link, navigate,
+} from 'gatsby';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
+import { isLoggedIn, logout } from '../services/auth';
 
 const NavItem = styled.a`
   color: black;
@@ -35,9 +38,34 @@ const NavBarComponent = () => (
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="ml-auto" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
+            {isLoggedIn() ? (
+              <NavItem
+                href="/private"
+                key="private-gallery"
+                id="nav-item"
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Private Gallery
+              </NavItem>
+            ) : (
+              <NavItem
+                href="/login"
+                key="login-gallery"
+                id="nav-item"
+                onClick={event => {
+                  event.preventDefault();
+                  logout(() => navigate('/login'));
+                }}
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Private Gallery
+              </NavItem>
+            )}
             <NavItem
               href="/gallery"
-              key="gallery-key"
+              key="gallery"
               id="nav-item"
               style={{ fontSize: '1.3rem' }}
               className="ml-auto"

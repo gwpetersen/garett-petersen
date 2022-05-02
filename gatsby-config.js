@@ -48,6 +48,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["SITE_USER", "SITE_PASSWORD"]
+      },
+    },
+    {
       resolve: "gatsby-source-s3",
       options: {
         aws: {
@@ -186,6 +192,14 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
       },
     },
     {
