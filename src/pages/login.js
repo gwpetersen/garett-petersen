@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { navigate } from 'gatsby';
 import { handleLogin, isLoggedIn } from '../services/auth';
-
+import Layout from '../components/layout';
 import '../containers/Login.css';
 
 export default function Login() {
@@ -23,6 +23,7 @@ export default function Login() {
   }
 
   return (
+    <Layout>
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="username">
@@ -47,5 +48,6 @@ export default function Login() {
         </Button>
       </Form>
     </div>
+    </Layout>
   );
 }
