@@ -31,7 +31,7 @@ function Gallery(props) {
     <StaticQuery
       query={graphql`
       {
-        allS3ImageAsset {
+        allS3ImageAsset(filter: { Key: { regex: "/public/g" } }) {
           edges {
             node {
               Key
@@ -48,7 +48,7 @@ function Gallery(props) {
       render={data => (
         <div>
           <div className="image-grid">
-            {data.allS3ImageAsset.edges.filter(({ node }) => !node.Key.includes('private')).map(({ node }, index) => (
+            {data.allS3ImageAsset.edges.map(({ node }, index) => (
               <ImageItem
                 className="image-item"
                 id={node.Key}

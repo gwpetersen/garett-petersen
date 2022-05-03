@@ -20,7 +20,7 @@ function PrivateGallery() {
   const [imageLength, setImageLength] = React.useState(0);
 
   const open = ({ data, index }) => {
-    const length = data.allS3ImageAsset.edges.length;
+    const { length } = data.allS3ImageAsset.edges;
     setImages(data.allS3ImageAsset.edges);
     setImageLength(length);
     setShowBox(true);
@@ -31,7 +31,7 @@ function PrivateGallery() {
     <StaticQuery
       query={graphql`
       {
-        allS3ImageAsset {
+        allS3ImageAsset(filter: { Key: { regex: "/private/g" } }){
           edges {
             node {
               Key
@@ -48,7 +48,7 @@ function PrivateGallery() {
       render={data => (
         <div>
           <div className="image-grid">
-            {data.allS3ImageAsset.edges.filter(({ node }) => node.Key.includes('private')).map(({ node }, index) => (
+            {data.allS3ImageAsset.edges.map(({ node }, index) => (
               <ImageItem
                 className="image-item"
                 id={node.Key}
