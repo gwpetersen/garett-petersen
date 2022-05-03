@@ -5,8 +5,9 @@ import {
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import './navbar.css';
-import { isLoggedIn, logout } from '../services/auth';
+import { isLoggedIn } from '../services/auth';
 import Emoji from './emoji';
+const isBrowser = () => typeof window !== 'undefined';
 
 const NavItem = styled.a`
   color: white;
@@ -37,7 +38,17 @@ text-decoration: none;
   background-color: grey;
 }
 `;
-const NavBarComponent = () => (
+export default function NavBarComponent() {
+  function handleClick(event) {
+    event.preventDefault();
+    if (isLoggedIn()) {
+      navigate('/private');
+    }
+    if (!isLoggedIn()) {
+      navigate('/login');
+    }
+  }
+  return (
   <StaticQuery
     query={graphql`
       {
@@ -62,27 +73,16 @@ const NavBarComponent = () => (
         <Navbar.Toggle className="color-nav-collapse" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            {isLoggedIn() ? (
-              <NavItem
-                href="/private"
-                key="private-gallery"
-                id="nav-item"
-                style={{ fontSize: '1.3rem' }}
-                className="ml-auto"
-              >
-                Private Gallery
-              </NavItem>
-            ) : (
-              <NavItem
-                href="/login"
-                key="login"
-                id="nav-item"
-                style={{ fontSize: '1.3rem' }}
-                className="ml-auto"
-              >
-                Private Gallery
-              </NavItem>
-            )}
+            <NavItem
+              href="/private"
+              key="private-gallery"
+              onClick={handleClick}
+              id="nav-item"
+              style={{ fontSize: '1.3rem' }}
+              className="ml-auto"
+            >
+              Private Gallery
+            </NavItem>
             <NavItem
               href="/gallery"
               key="gallery"
@@ -117,6 +117,6 @@ const NavBarComponent = () => (
       </Navbar>
     )}
   />
-);
+  )
+}
 
-export default NavBarComponent;
