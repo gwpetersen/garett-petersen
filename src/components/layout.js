@@ -16,6 +16,8 @@ const LayoutWrapper = styled.main`
   max-width: 960px;
   margin: 0 auto;
   height: auto !important;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const Layout = ({ children }) => (

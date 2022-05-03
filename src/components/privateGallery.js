@@ -13,16 +13,16 @@ const ImageItem = styled.div`
     cursor: pointer;
   }
 `;
-function Gallery(props) {
+function PrivateGallery() {
   const [showBox, setShowBox] = React.useState(false);
   const [images, setImages] = React.useState([]);
   const [photoIndex, setPhotoIndex] = React.useState(0);
   const [imageLength, setImageLength] = React.useState(0);
 
-  const open = ({ data, index }, e) => {
-    const imageLength = data.allS3ImageAsset.edges.length;
+  const open = ({ data, index }) => {
+    const { length } = data.allS3ImageAsset.edges;
     setImages(data.allS3ImageAsset.edges);
-    setImageLength(imageLength);
+    setImageLength(length);
     setShowBox(true);
     setPhotoIndex(index);
   };
@@ -31,7 +31,7 @@ function Gallery(props) {
     <StaticQuery
       query={graphql`
       {
-        allS3ImageAsset(filter: { Key: { regex: "/public/g" } }) {
+        allS3ImageAsset(filter: { Key: { regex: "/private/g" } }){
           edges {
             node {
               Key
@@ -91,4 +91,4 @@ function Gallery(props) {
     />
   );
 }
-export default Gallery;
+export default PrivateGallery;

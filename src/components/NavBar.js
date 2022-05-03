@@ -1,20 +1,41 @@
 import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import {
+  graphql, StaticQuery, navigate,
+} from 'gatsby';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
+import './navbar.css';
+import { isLoggedIn, logout } from '../services/auth';
+import Emoji from './emoji';
 
 const NavItem = styled.a`
-  color: black;
+  color: white;
   font-family: "Playfair Display", serif;
   fontsize: large;
   display: block;
   padding: 8px;
   text-decoration: none;
   :hover {
-    color: black;
+    color: white;
     text-decoration: none;
     cursor: pointer;
+    background-color: grey;
   }
+`;
+
+const NavItemBrand = styled.div`
+color: white;
+font-family: "Playfair Display", serif;
+fontsize: large;
+display: block;
+padding: 8px;
+text-decoration: none;
+:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: grey;
+}
 `;
 const NavBarComponent = () => (
   <StaticQuery
@@ -31,13 +52,40 @@ const NavBarComponent = () => (
       }
     `}
     render={data => (
-      <Navbar expand="lg">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="ml-auto" />
+      <Navbar className="navbar" expand="lg">
+        <Navbar.Brand href="/home">
+          <NavItemBrand>
+            <Emoji symbol="0x1F481" />
+            Garett Petersen
+          </NavItemBrand>
+        </Navbar.Brand>
+        <Navbar.Toggle className="color-nav-collapse" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
+            {isLoggedIn() ? (
+              <NavItem
+                href="/private"
+                key="private-gallery"
+                id="nav-item"
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Private Gallery
+              </NavItem>
+            ) : (
+              <NavItem
+                href="/login"
+                key="login"
+                id="nav-item"
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Private Gallery
+              </NavItem>
+            )}
             <NavItem
               href="/gallery"
-              key="gallery-key"
+              key="gallery"
               id="nav-item"
               style={{ fontSize: '1.3rem' }}
               className="ml-auto"

@@ -56,15 +56,15 @@ exports.createPages = ({ graphql, actions }) => {
           // Gatsby uses Redux to manage its internal state.
           // Plugins and sites can use functions like "createPage"
           // to interact with Gatsby.
-          createPage({
-            // Each page is required to have a `path` as well
-            // as a template component. The `context` is
-            // optional but is often necessary so the template
-            // can query data specific to each page.
-            path: `${edge.node.slug}/`,
-            component: slash(pageTemplate),
-            context: edge.node,
-          })
+            createPage({
+              // Each page is required to have a `path` as well
+              // as a template component. The `context` is
+              // optional but is often necessary so the template
+              // can query data specific to each page.
+              path: `${edge.node.slug}/`,
+              component: slash(pageTemplate),
+              context: edge.node,
+            })
         })
       })
       // ==== END PAGES ====
@@ -97,15 +97,26 @@ exports.createPages = ({ graphql, actions }) => {
           // post node. We'll just use the WordPress Slug for the slug.
           // The Post ID is prefixed with 'POST_'
           _.each(result.data.allWordpressPost.edges, edge => {
-            createPage({
-              path: `/post/${edge.node.slug}/`,
-              component: slash(postTemplate),
-              context: edge.node,
-            })
+              createPage({
+                path: `/post/${edge.node.slug}/`,
+                component: slash(postTemplate),
+                context: edge.node,
+              })
           })
         })
         resolve()
       })
   })
   // ==== END POSTS ====
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/private/)) {
+    page.matchPath = "/private/*"
+    // Update the page.
+    createPage(page)
+  }
 }

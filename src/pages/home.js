@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/layout';
-import HeroCarousel from '../components/carousel';
 import BuiltSiteImage from '../components/builtsite';
 import CoverflowEffect from '../components/cardswiper';
 
@@ -83,7 +82,6 @@ const HomePage = () => (
       ];
       return (
         <Layout>
-          <HeroCarousel />
           <main>
             <div>
               <Header>
