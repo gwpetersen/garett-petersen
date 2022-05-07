@@ -30,7 +30,7 @@ function PrivateGallery() {
     <StaticQuery
       query={graphql`
       {
-        allS3Image(filter: { Key: { regex: "/private/g" } }){
+        allS3Image(filter: { Key: { regex: "/.*private.*/" } }){
             edges {
                 node {
                   Key

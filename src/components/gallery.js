@@ -30,7 +30,7 @@ function Gallery(props) {
     <StaticQuery
       query={graphql`
       {
-        allS3Image(filter: { Key: { regex: "/public/g" } }){
+        allS3Image(filter: { Key: { regex: "/.*public.*/" } }){
             edges {
                 node {
                   Key
