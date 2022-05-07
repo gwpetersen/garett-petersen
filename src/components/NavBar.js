@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import './navbar.css';
 import { isLoggedIn } from '../services/auth';
 import Emoji from './emoji';
+
 const isBrowser = () => typeof window !== 'undefined';
 
 const NavItem = styled.a`
@@ -49,8 +50,8 @@ export default function NavBarComponent() {
     }
   }
   return (
-  <StaticQuery
-    query={graphql`
+    <StaticQuery
+      query={graphql`
       {
         allWordpressPage {
           edges {
@@ -62,61 +63,60 @@ export default function NavBarComponent() {
         }
       }
     `}
-    render={data => (
-      <Navbar className="navbar" expand="lg">
-        <Navbar.Brand href="/home">
-          <NavItemBrand>
-            <Emoji symbol="0x1F481" />
-            Garett Petersen
-          </NavItemBrand>
-        </Navbar.Brand>
-        <Navbar.Toggle className="color-nav-collapse" aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <NavItem
-              href="/private"
-              key="private-gallery"
-              onClick={handleClick}
-              id="nav-item"
-              style={{ fontSize: '1.3rem' }}
-              className="ml-auto"
-            >
-              Private Gallery
-            </NavItem>
-            <NavItem
-              href="/gallery"
-              key="gallery"
-              id="nav-item"
-              style={{ fontSize: '1.3rem' }}
-              className="ml-auto"
-            >
-              Gallery
-            </NavItem>
-            <NavItem
-              href="/post"
-              key="post"
-              id="nav-item"
-              style={{ fontSize: '1.3rem' }}
-              className="ml-auto"
-            >
-              Post
-            </NavItem>
-            {data.allWordpressPage.edges.map(edges => (
+      render={data => (
+        <Navbar className="navbar" expand="lg">
+          <Navbar.Brand href="/home">
+            <NavItemBrand>
+              <Emoji symbol="0x1F481" />
+              Garett Petersen
+            </NavItemBrand>
+          </Navbar.Brand>
+          <Navbar.Toggle className="color-nav-collapse" aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
               <NavItem
-                href={`/${edges.node.slug}`}
-                key={`${edges.node.slug}-key`}
+                href="/private"
+                key="private-gallery"
+                onClick={handleClick}
                 id="nav-item"
                 style={{ fontSize: '1.3rem' }}
                 className="ml-auto"
               >
-                {edges.node.title}
+                Private Gallery
               </NavItem>
-            ))}
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    )}
-  />
-  )
+              <NavItem
+                href="/gallery"
+                key="gallery"
+                id="nav-item"
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Gallery
+              </NavItem>
+              <NavItem
+                href="/post"
+                key="post"
+                id="nav-item"
+                style={{ fontSize: '1.3rem' }}
+                className="ml-auto"
+              >
+                Post
+              </NavItem>
+              {data.allWordpressPage.edges.map(edges => (
+                <NavItem
+                  href={`/${edges.node.slug}`}
+                  key={`${edges.node.slug}-key`}
+                  id="nav-item"
+                  style={{ fontSize: '1.3rem' }}
+                  className="ml-auto"
+                >
+                  {edges.node.title}
+                </NavItem>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      )}
+    />
+  );
 }
-
