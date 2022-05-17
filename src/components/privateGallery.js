@@ -56,7 +56,7 @@ function PrivateGallery() {
                   src={node.Url}
                   style={{
                     width: '100%',
-                    height: '600px',
+                    height: '500px',
                     maxHeight: '600px',
                     objectFit: 'cover',
                   }}
