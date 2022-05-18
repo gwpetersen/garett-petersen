@@ -69,7 +69,7 @@ function Gallery(props) {
             {showBox && (
             <Lightbox
               onCloseRequest={() => setShowBox(false)}
-              animationDisabled={true}
+              animationDisabled
               keyRepeatLimit={900}
               mainSrc={images[photoIndex].node.Url}
               nextSrc={images[(photoIndex + 1) % imageLength].node.Url}
