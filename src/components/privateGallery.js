@@ -69,8 +69,8 @@ function PrivateGallery() {
             {showBox && (
             <Lightbox
               onCloseRequest={() => setShowBox(false)}
-              animationDisabled
-              keyRepeatLimit={900}
+              animationDuration={700}
+              keyRepeatLimit={500}
               mainSrc={images[photoIndex].node.Url}
               nextSrc={images[(photoIndex + 1) % imageLength].node.Url}
               prevSrc={images[(photoIndex + imageLength - 1) % imageLength].node.Url}
