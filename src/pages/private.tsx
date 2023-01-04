@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { navigate } from "gatsby"
 import Layout from "../components/layout"
-import PrivateGallery from "../components/privateGallery"
+import PrivateGallery from "../components/PrivateGallery"
 import { isLoggedIn } from "../services/auth"
 
 const isBrowser = () => typeof window !== "undefined"

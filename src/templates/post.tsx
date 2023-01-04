@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import S3Image from "../components/alls3image"
+import S3Image from "../components/S3Image"
 import BuiltSiteImage from "../components/builtsite"
 
 const Container = styled.div`

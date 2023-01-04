@@ -54,7 +54,6 @@ export default function Login() {
           <Button
             variant="dark"
             style={{ backgroundColor: "#404040" }}
-            block
             size="lg"
             type="submit"
             disabled={!validateForm()}

@@ -1,4 +1,4 @@
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 interface Props {
@@ -8,18 +8,14 @@ interface Props {
 function S3Image({ fileName, alt }: Props) {
   const data = useStaticQuery(graphql`
     query {
-      images: allS3Image {
+      images: allS3ImageAsset {
         edges {
           node {
-            Url
             Key
-            localFile {
-              relativePath
-              name
-              childImageSharp {
-                fluid(quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
+            childImageSharp {
+              fluid(maxHeight: 600, quality: 90, fit: COVER) {
+                ...GatsbyImageSharpFluid_withWebp
+                src
               }
             }
           }
@@ -27,10 +23,10 @@ function S3Image({ fileName, alt }: Props) {
       }
     }
   `)
-  const image = data.images.edges.find((n: any) =>
-    n.node.Key.includes(fileName)
+  const image = data.images.edges.find(({ node }: { node: { Key: string }}) =>
+    node.Key.includes(fileName)
   )
-  const imageSizes = image.node.localFile.childImageSharp.fluid
+  const imageSizes: FluidObject = image.node.childImageSharp.fluid
   if (!image) {
     return null
   }

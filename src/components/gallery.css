@@ -13,11 +13,11 @@
   }
 }
 
-.mb-3 > a {
-  color: #404040;
+.mb-3 > li > button {
+  color: #404040 ;
 }
 
-.mb-3 > a:hover {
+.mb-3 > li:hover {
   color: white;
   text-decoration: none;
   cursor: pointer;
