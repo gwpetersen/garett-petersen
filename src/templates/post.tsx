@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import Layout from '../components/layout';
-import S3Image from '../components/alls3image';
-import BuiltSiteImage from '../components/builtsite';
+import React from "react"
+import styled from "styled-components"
+import Layout from "../components/layout"
+import S3Image from "../components/alls3image"
+import BuiltSiteImage from "../components/builtsite"
 
 const Container = styled.div`
   margin-bottom: 3em;
@@ -10,11 +10,11 @@ const Container = styled.div`
   margin-right: 2em;
   box-sizing: border-box;
   display: block;
-`;
+`
 
-export default ({ pageContext }) => {
+export default ({ pageContext }: any) => {
   switch (pageContext.slug) {
-    case 'how-i-built-my-site':
+    case "how-i-built-my-site":
       return (
         <Layout>
           <Container>
@@ -22,42 +22,42 @@ export default ({ pageContext }) => {
             <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
         </Layout>
-      );
-    case 'balboa-park':
+      )
+    case "balboa-park":
       return (
         <Layout>
           <Container>
-            <S3Image filename="huntington-library.jpg" />
+            <S3Image fileName="huntington-library.jpg" />
             <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
         </Layout>
-      );
-    case 'hawaii':
+      )
+    case "hawaii":
       return (
         <Layout>
           <Container>
-            <S3Image filename="hawaii-waipio-valley-2.jpg" />
+            <S3Image fileName="hawaii-waipio-valley-2.jpg" />
             <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
         </Layout>
-      );
-    case 'cancun':
+      )
+    case "cancun":
       return (
         <Layout>
           <Container>
-            <S3Image filename="cancun1.jpg" />
+            <S3Image fileName="cancun1.jpg" />
             <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
         </Layout>
-      );
+      )
     default:
       return (
         <Layout>
           <Container>
-            <S3Image filename="default.jpg" />
+            <S3Image fileName="default.jpg" />
+            <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           </Container>
-          <div dangerouslySetInnerHTML={{ __html: pageContext.content }} />
         </Layout>
-      );
+      )
   }
-};
+}

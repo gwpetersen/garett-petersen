@@ -1,30 +1,38 @@
-import React from 'react';
-import Swiper from 'react-id-swiper';
-import styled from 'styled-components';
+import React from "react"
+import Swiper from "react-id-swiper"
+import styled from "styled-components"
 
 const SwiperSlide = styled.div`
   background-position: center;
   background-size: cover;
   width: 300px;
   height: 200px;
-`;
+`
 const CardPostLink = styled.a`
   text-decoration: none !important;
   color: inherit;
   &:hover {
     color: inherit;
   }
-`;
+`
 const SwiperContainer = styled.div`
   width: 30%;
-`;
-const CoverflowEffect = props => {
+`
+
+interface Props {
+  data: {
+    Url: string
+    slug: string
+    Key: string
+  }[]
+}
+function CoverflowEffect({ data }: Props) {
   const params = {
-    pagination: '.swiper-pagination',
-    effect: 'coverflow',
+    pagination: ".swiper-pagination",
+    effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
-    slidesPerView: 'auto',
+    slidesPerView: "auto",
     coverflow: {
       rotate: 50,
       stretch: 0,
@@ -33,16 +41,15 @@ const CoverflowEffect = props => {
       slideShadows: true,
     },
     loop: true,
-  };
+  }
   return (
     <Swiper {...params}>
-      {props.data.map(node => (
+      {data.map(node => (
         <SwiperContainer className="swiper-container" key={node.Key}>
           <CardPostLink href={`/post/${node.slug}`}>
             <div className="swiper-wrapper">
               <SwiperSlide
                 className="swiper-slide"
-                image={node.Url}
                 style={{ backgroundImage: `url(${node.Url}` }}
               />
             </div>
@@ -51,6 +58,6 @@ const CoverflowEffect = props => {
         </SwiperContainer>
       ))}
     </Swiper>
-  );
-};
-export default CoverflowEffect;
+  )
+}
+export default CoverflowEffect

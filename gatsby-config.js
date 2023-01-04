@@ -38,7 +38,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["SITE_USER", "SITE_PASSWORD"]
+        allowList: ["SITE_USER", "SITE_PASSWORD"],
       },
     },
     {
@@ -197,6 +197,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-sharp",
+    "gatsby-plugin-image",
     `gatsby-plugin-netlify`,
     "gatsby-transformer-sharp",
     `gatsby-background-image`,

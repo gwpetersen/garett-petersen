@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
         // Create Page pages.
-        const pageTemplate = path.resolve("./src/templates/page.js")
+        const pageTemplate = path.resolve("./src/templates/page.tsx")
         // We want to create a detailed page for each
         // page node. We'll just use the WordPress Slug for the slug.
         // The Page ID is prefixed with 'PAGE_'
@@ -56,15 +56,15 @@ exports.createPages = ({ graphql, actions }) => {
           // Gatsby uses Redux to manage its internal state.
           // Plugins and sites can use functions like "createPage"
           // to interact with Gatsby.
-            createPage({
-              // Each page is required to have a `path` as well
-              // as a template component. The `context` is
-              // optional but is often necessary so the template
-              // can query data specific to each page.
-              path: `${edge.node.slug}/`,
-              component: slash(pageTemplate),
-              context: edge.node,
-            })
+          createPage({
+            // Each page is required to have a `path` as well
+            // as a template component. The `context` is
+            // optional but is often necessary so the template
+            // can query data specific to each page.
+            path: `${edge.node.slug}/`,
+            component: slash(pageTemplate),
+            context: edge.node,
+          })
         })
       })
       // ==== END PAGES ====
@@ -92,16 +92,16 @@ exports.createPages = ({ graphql, actions }) => {
             console.log(result.errors)
             reject(result.errors)
           }
-          const postTemplate = path.resolve("./src/templates/post.js")
+          const postTemplate = path.resolve("./src/templates/post.tsx")
           // We want to create a detailed page for each
           // post node. We'll just use the WordPress Slug for the slug.
           // The Post ID is prefixed with 'POST_'
           _.each(result.data.allWordpressPost.edges, edge => {
-              createPage({
-                path: `/post/${edge.node.slug}/`,
-                component: slash(postTemplate),
-                context: edge.node,
-              })
+            createPage({
+              path: `/post/${edge.node.slug}/`,
+              component: slash(postTemplate),
+              context: edge.node,
+            })
           })
         })
         resolve()
