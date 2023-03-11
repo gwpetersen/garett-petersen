@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  graphql, StaticQuery, navigate,
-} from 'gatsby';
-import { Navbar, Nav } from 'react-bootstrap';
-import styled from 'styled-components';
-import './navbar.css';
-import { isLoggedIn } from '../services/auth';
-import Emoji from './emoji';
-
-const isBrowser = () => typeof window !== 'undefined';
+import React from "react"
+import { graphql, StaticQuery, navigate } from "gatsby"
+import { Navbar, Nav } from "react-bootstrap"
+import styled from "styled-components"
+import "./navbar.css"
+import { isLoggedIn } from "../services/auth"
+import Emoji from "./emoji"
 
 const NavItem = styled.a`
   color: white;
@@ -23,55 +19,58 @@ const NavItem = styled.a`
     cursor: pointer;
     background-color: grey;
   }
-`;
+`
 
 const NavItemBrand = styled.div`
-color: white;
-font-family: "Playfair Display", serif;
-fontsize: large;
-display: block;
-padding: 8px;
-text-decoration: none;
-:hover {
   color: white;
+  font-family: "Playfair Display", serif;
+  fontsize: large;
+  display: block;
+  padding: 8px;
   text-decoration: none;
-  cursor: pointer;
-  background-color: grey;
-}
-`;
+  :hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: grey;
+  }
+`
 export default function NavBarComponent() {
-  function handleClick(event) {
-    event.preventDefault();
+  function handleClick(event: React.MouseEvent) {
+    event.preventDefault()
     if (isLoggedIn()) {
-      navigate('/private');
+      navigate("/private")
     }
     if (!isLoggedIn()) {
-      navigate('/login');
+      navigate("/login")
     }
   }
   return (
     <StaticQuery
       query={graphql`
-      {
-        allWordpressPage {
-          edges {
-            node {
-              slug
-              title
+        {
+          allWpPage {
+            edges {
+              node {
+                slug
+                title
+              }
             }
           }
         }
-      }
-    `}
+      `}
       render={data => (
         <Navbar className="navbar" expand="lg">
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/">
             <NavItemBrand>
-              <Emoji symbol="0x1F481" />
+              <Emoji symbol={0x1f481} />
               Garett Petersen
             </NavItemBrand>
           </Navbar.Brand>
-          <Navbar.Toggle className="color-nav-collapse" aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            className="color-nav-collapse"
+            aria-controls="basic-navbar-nav"
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <NavItem
@@ -79,7 +78,7 @@ export default function NavBarComponent() {
                 key="private-gallery"
                 onClick={handleClick}
                 id="nav-item"
-                style={{ fontSize: '1.3rem' }}
+                style={{ fontSize: "1.3rem" }}
                 className="ml-auto"
               >
                 Private Gallery
@@ -88,7 +87,7 @@ export default function NavBarComponent() {
                 href="/gallery"
                 key="gallery"
                 id="nav-item"
-                style={{ fontSize: '1.3rem' }}
+                style={{ fontSize: "1.3rem" }}
                 className="ml-auto"
               >
                 Gallery
@@ -97,26 +96,28 @@ export default function NavBarComponent() {
                 href="/post"
                 key="post"
                 id="nav-item"
-                style={{ fontSize: '1.3rem' }}
+                style={{ fontSize: "1.3rem" }}
                 className="ml-auto"
               >
                 Post
               </NavItem>
-              {data.allWordpressPage.edges.map(edges => (
-                <NavItem
-                  href={`/${edges.node.slug}`}
-                  key={`${edges.node.slug}-key`}
-                  id="nav-item"
-                  style={{ fontSize: '1.3rem' }}
-                  className="ml-auto"
-                >
-                  {edges.node.title}
-                </NavItem>
-              ))}
+              {data.allWpPage.edges.map(
+                (edges: { node: { slug: string; title: string } }) => (
+                  <NavItem
+                    href={`/${edges.node.slug}`}
+                    key={`${edges.node.slug}-key`}
+                    id="nav-item"
+                    style={{ fontSize: "1.3rem" }}
+                    className="ml-auto"
+                  >
+                    {edges.node.title}
+                  </NavItem>
+                )
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       )}
     />
-  );
+  )
 }

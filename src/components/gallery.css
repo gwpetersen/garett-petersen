@@ -1,7 +1,7 @@
 .image-grid {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit);
   }
 .image-grid .image-item:nth-child(4n) {
   grid-column-end: span 3;
@@ -11,4 +11,27 @@
   .image-grid{
     display: block;
   }
+}
+
+.myClass > li > button {
+  color: #404040 ;
+}
+
+.mb-3 > li > button {
+  color: #404040 ;
+}
+
+.mb-3{
+  color: white ;
+}
+
+li > .active {
+  background-color: grey;
+}
+
+.myClass > li > button:hover {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: gray;
+  color: black;
 }
