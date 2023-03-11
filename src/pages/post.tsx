@@ -1,8 +1,8 @@
 import React from "react"
 import { ListGroup } from "react-bootstrap"
-import { graphql, StaticQuery } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 const ListItem = styled.a`
   font-family: Lora, serif;
@@ -39,45 +39,42 @@ const CustomHeader = styled.h2`
   box-sizing: border-box;
 `
 
-const AllPost = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allWordpressPost {
-          edges {
-            node {
-              id
-              title
-              slug
-              excerpt
-              content
-              date
-            }
+
+export default function AllPost() {
+  const data = useStaticQuery(graphql`
+    query {
+      allWpPost {
+        edges {
+          node {
+            id
+            title
+            slug
+            excerpt
+            content
+            date
           }
         }
       }
-    `}
-    render={data => (
-      <Layout>
-        <ListGroup>
-          {data.allWordpressPost.edges.map(
-            (edge: { node: { slug: string; title: string; date: string } }) => (
-              <ListItem href={`/post/${edge.node.slug}`} key={edge.node.slug}>
-                <ListGroup.Item action>
-                  <CustomHeader>
-                    {edge.node.title.replace(/&nbsp;/g, " ")}
-                  </CustomHeader>
-                  <CustomDate>
-                    {new Date(edge.node.date).toLocaleDateString("en-US")}
-                  </CustomDate>
-                </ListGroup.Item>
-              </ListItem>
-            )
-          )}
-        </ListGroup>
-      </Layout>
-    )}
-  />
-)
-
-export default AllPost
+    }
+  `)
+  return  (
+    <Layout>
+      <ListGroup>
+        {data.allWpPost.edges.map(
+          (edge: { node: { slug: string; title: string; date: string } }) => (
+            <ListItem href={`/post/${edge.node.slug}`} key={edge.node.slug}>
+              <ListGroup.Item action>
+                <CustomHeader>
+                  {edge.node.title.replace(/&nbsp;/g, " ")}
+                </CustomHeader>
+                <CustomDate>
+                  {new Date(edge.node.date).toLocaleDateString("en-US")}
+                </CustomDate>
+              </ListGroup.Item>
+            </ListItem>
+          )
+        )}
+      </ListGroup>
+    </Layout>
+  )
+}

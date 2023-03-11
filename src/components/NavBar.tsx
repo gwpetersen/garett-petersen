@@ -4,7 +4,7 @@ import { Navbar, Nav } from "react-bootstrap"
 import styled from "styled-components"
 import "./navbar.css"
 import { isLoggedIn } from "../services/auth"
-import Emoji from "./emoji"
+import Emoji from "./Emoji"
 
 const NavItem = styled.a`
   color: white;
@@ -49,7 +49,7 @@ export default function NavBarComponent() {
     <StaticQuery
       query={graphql`
         {
-          allWordpressPage {
+          allWpPage {
             edges {
               node {
                 slug
@@ -61,7 +61,7 @@ export default function NavBarComponent() {
       `}
       render={data => (
         <Navbar className="navbar" expand="lg">
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/">
             <NavItemBrand>
               <Emoji symbol={0x1f481} />
               Garett Petersen
@@ -101,7 +101,7 @@ export default function NavBarComponent() {
               >
                 Post
               </NavItem>
-              {data.allWordpressPage.edges.map(
+              {data.allWpPage.edges.map(
                 (edges: { node: { slug: string; title: string } }) => (
                   <NavItem
                     href={`/${edges.node.slug}`}

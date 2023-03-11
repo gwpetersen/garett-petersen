@@ -87,7 +87,7 @@ const Gallery = () => {
         className="mb-3"
       >
         {imageCategory.map(({ cat }) => (
-          <Tab className="tabs" eventKey={cat} title={cat.toUpperCase()}>
+          <Tab className="tabs" key={`tab-${cat}`} eventKey={cat} title={cat.toUpperCase()}>
             {" "}
           </Tab>
         ))}

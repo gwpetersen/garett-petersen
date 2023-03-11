@@ -13,13 +13,25 @@
   }
 }
 
+.myClass > li > button {
+  color: #404040 ;
+}
+
 .mb-3 > li > button {
   color: #404040 ;
 }
 
-.mb-3 > li:hover {
-  color: white;
+.mb-3{
+  color: white ;
+}
+
+li > .active {
+  background-color: grey;
+}
+
+.myClass > li > button:hover {
   text-decoration: none;
   cursor: pointer;
-  background-color: grey;
+  background-color: gray;
+  color: black;
 }

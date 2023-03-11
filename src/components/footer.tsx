@@ -57,7 +57,7 @@ const Footer = () => (
       style={{ fontSize: "1.2rem" }}
     >
       © 2020 Copyright:
-      <CopyRight href="/home"> Garett Petersen</CopyRight>
+      <CopyRight href="/"> Garett Petersen</CopyRight>
     </div>
   </footer>
 )

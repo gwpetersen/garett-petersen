@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { navigate } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import PrivateGallery from "../components/PrivateGallery"
 import { isLoggedIn } from "../services/auth"
 
