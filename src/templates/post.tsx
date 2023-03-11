@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import S3Image from "../components/s3image"
-import BuiltSiteImage from "../components/buildsite"
+import S3Image from "../components/image"
+import BuiltSiteImage from "../components/subpost"
 
 const Container = styled.div`
   margin-bottom: 3em;
