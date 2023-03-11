@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button"
 import { navigate } from "gatsby"
 import styled from "styled-components"
 import { handleLogin, isLoggedIn } from "../services/auth"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 import "../containers/Login.css"
 
 const ErrorMessage = styled.div`

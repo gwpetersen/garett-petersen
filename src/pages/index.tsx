@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Layout from "../components/Layout"
-import BuiltSiteImage from "../components/BuildSite"
+import Layout from "../components/layout"
+import BuiltSiteImage from "../components/buildsite"
 
 const H2 = styled.h2`
   color: #463b36;

@@ -2,7 +2,7 @@ import React from "react"
 import { ListGroup } from "react-bootstrap"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import Layout from "../components/Layout"
+import Layout from "../components/layout"
 
 const ListItem = styled.a`
   font-family: Lora, serif;

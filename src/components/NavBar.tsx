@@ -4,7 +4,7 @@ import { Navbar, Nav } from "react-bootstrap"
 import styled from "styled-components"
 import "./navbar.css"
 import { isLoggedIn } from "../services/auth"
-import Emoji from "./Emoji"
+import Emoji from "./emoji"
 
 const NavItem = styled.a`
   color: white;
