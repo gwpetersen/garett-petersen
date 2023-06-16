@@ -1,5 +1,4 @@
 import { graphql, useStaticQuery } from "gatsby"
-import Img, { FluidObject } from "gatsby-image"
 import styled from "styled-components"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
@@ -8,9 +7,15 @@ import "./gallery.css"
 import Tab from "react-bootstrap/Tab"
 import Tabs from "react-bootstrap/Tabs"
 import "react-image-lightbox/style.css"
-import { S3ImageAssetNode } from "gatsby-source-s3-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+export interface Node {
+  Key: string;
+  childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+  }
+}
 export interface Edges {
-  node: S3ImageAssetNode & { childImageSharp: { fluid: FluidObject } }
+  node: Node
 }
 const ImageItem: any = styled.div`
   :hover {
@@ -28,11 +33,8 @@ const PrivateGallery = () => {
           node {
             Key
             childImageSharp {
-              fluid(maxHeight: 600, quality: 90, fit: COVER) {
-                ...GatsbyImageSharpFluid_withWebp
-                src
-              }
-            }
+              gatsbyImageData(layout: CONSTRAINED)
+          }
           }
         }
       }
@@ -57,7 +59,7 @@ const PrivateGallery = () => {
   }
 
   const edges: {
-    node: S3ImageAssetNode & { childImageSharp: { fluid: FluidObject } }
+    node: Node
   }[] = data.allS3ImageAsset.edges
   const allCategories = edges
     .filter(({ node }) => {
@@ -103,10 +105,10 @@ const PrivateGallery = () => {
               open({ edges, index })
             }}
           >
-            <Img
-              fluid={node.childImageSharp.fluid}
-              key={`Img-${index}`}
-              style={{
+            <GatsbyImage
+            alt={''}
+            image={node.childImageSharp.gatsbyImageData}
+            style={{
                 width: "100%",
                 height: "600px",
                 maxHeight: "600px",
@@ -122,14 +124,13 @@ const PrivateGallery = () => {
             onCloseRequest={() => setShowBox(false)}
             animationDuration={700}
             keyRepeatLimit={500}
-            mainSrc={images[photoIndex].node.childImageSharp.fluid.src}
+            mainSrc={images[photoIndex].node.childImageSharp.gatsbyImageData.images.fallback?.src || ''}
             nextSrc={
-              images[(photoIndex + 1) % imageLength].node.childImageSharp.fluid
-                .src
+              images[(photoIndex + 1) % imageLength].node.childImageSharp.gatsbyImageData.images.fallback?.src
             }
             prevSrc={
               images[(photoIndex + imageLength - 1) % imageLength].node
-                .childImageSharp.fluid.src
+                .childImageSharp.gatsbyImageData.images.fallback?.src
             }
             onMovePrevRequest={() =>
               setPhotoIndex((photoIndex + imageLength - 1) % imageLength)
