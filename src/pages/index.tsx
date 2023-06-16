@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import BuiltSiteImage from "../components/buildsite"
+import BuiltSiteImage from "../components/subpost"
 
 const H2 = styled.h2`
   color: #463b36;

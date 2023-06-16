@@ -3,13 +3,17 @@ require("dotenv").config({
 })
 process.env["AWS_ACCESS_KEY_ID"] = process.env.NETLIFY_AWS_ACCESS_KEY_ID
 process.env["AWS_SECRET_ACCESS_KEY"] = process.env.NETLIFY_AWS_SECRET_ACCESS_KEY
+process.env["AWS_REGION"] = process.env.NETLIFY_AWS_REGION
+
 
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
   AWS_SECRET_ACCESS_KEY: secretAccessKey,
+  AWS_REGION: awsRegion,
 } = process.env
 
 module.exports = {
+  graphqlTypegen: true,
   siteMetadata: {
     title: `Garett Petersen`,
     description: `Interactive Experience With Modern Tech`,
@@ -17,6 +21,14 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,7 +43,9 @@ module.exports = {
         aws: {
           accessKeyId: accessKeyId,
           secretAccessKey: secretAccessKey,
+          region: awsRegion
         },
+        
         protocol: "http", // [optional] Default to `https`.
       },
     },
@@ -67,11 +81,11 @@ module.exports = {
          * Example : 'demo.wp-api.org' or 'www.example-site.com'
          */
         url: 'http://wp.garettpetersen.com/graphql' || `https://localhost/graphql`,
-        hostingWPCOM: false,
         schema: {
           //Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".
           typePrefix: `Wp`,
         },
+        verbose: true,
         develop: {
           //caches media files outside of Gatsby's default cache an thus allows them to persist through a cache reset.
           hardCacheMediaFiles: true,
@@ -96,8 +110,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     `gatsby-plugin-netlify`,
-    "gatsby-transformer-sharp",
-    `gatsby-background-image`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
