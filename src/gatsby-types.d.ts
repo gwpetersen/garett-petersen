@@ -3981,17 +3981,6 @@ type Wp = Node & {
   readonly writingSettings: Maybe<WpWritingSettings>;
 };
 
-type WpActionMonitorActionConnectionPageInfoType = {
-  /** When paginating forwards, the cursor to continue. */
-  readonly endCursor: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  readonly hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  readonly hasPreviousPage: Scalars['Boolean'];
-  /** When paginating backwards, the cursor to continue. */
-  readonly startCursor: Maybe<Scalars['String']>;
-};
-
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 type WpAvatar = {
   /** URL for the default image or a default type. Accepts &#039;404&#039; (return a 404 instead of a default image), &#039;retro&#039; (8bit), &#039;monsterid&#039; (monster), &#039;wavatar&#039; (cartoon face), &#039;indenticon&#039; (the &#039;quilt&#039;), &#039;mystery&#039;, &#039;mm&#039;, or &#039;mysteryman&#039; (The Oyster Man), &#039;blank&#039; (transparent GIF), or &#039;gravatar_default&#039; (the Gravatar logo). */
@@ -6046,28 +6035,6 @@ type WpEdge = {
 type WpEdgeType = {
   /** The connected node */
   readonly node: WpNode;
-};
-
-type WpEnqueuedScriptConnectionPageInfoType = {
-  /** When paginating forwards, the cursor to continue. */
-  readonly endCursor: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  readonly hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  readonly hasPreviousPage: Scalars['Boolean'];
-  /** When paginating backwards, the cursor to continue. */
-  readonly startCursor: Maybe<Scalars['String']>;
-};
-
-type WpEnqueuedStylesheetConnectionPageInfoType = {
-  /** When paginating forwards, the cursor to continue. */
-  readonly endCursor: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  readonly hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  readonly hasPreviousPage: Scalars['Boolean'];
-  /** When paginating backwards, the cursor to continue. */
-  readonly startCursor: Maybe<Scalars['String']>;
 };
 
 type WpFieldSelector = {
@@ -10043,17 +10010,6 @@ type WpPageToCommentConnectionTypeSortInput = {
   readonly pageInfo: InputMaybe<WpPageToCommentConnectionPageInfoTypeSortInput>;
 };
 
-type WpPluginConnectionPageInfoType = {
-  /** When paginating forwards, the cursor to continue. */
-  readonly endCursor: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  readonly hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  readonly hasPreviousPage: Scalars['Boolean'];
-  /** When paginating backwards, the cursor to continue. */
-  readonly startCursor: Maybe<Scalars['String']>;
-};
-
 /** The post type */
 type WpPost = Node & WpContentNode & WpDatabaseIdentifier & WpMenuItemLinkable & WpNode & WpNodeWithAuthor & WpNodeWithComments & WpNodeWithContentEditor & WpNodeWithExcerpt & WpNodeWithFeaturedImage & WpNodeWithRevisions & WpNodeWithTemplate & WpNodeWithTitle & WpNodeWithTrackbacks & WpUniformResourceIdentifiable & {
   /** Connection between the NodeWithAuthor type and the User type */
@@ -12213,17 +12169,6 @@ type WpTermNodeSortInput = {
   readonly termGroupId: InputMaybe<SortOrderEnum>;
   readonly termTaxonomyId: InputMaybe<SortOrderEnum>;
   readonly uri: InputMaybe<SortOrderEnum>;
-};
-
-type WpThemeConnectionPageInfoType = {
-  /** When paginating forwards, the cursor to continue. */
-  readonly endCursor: Maybe<Scalars['String']>;
-  /** When paginating forwards, are there more items? */
-  readonly hasNextPage: Scalars['Boolean'];
-  /** When paginating backwards, are there more items? */
-  readonly hasPreviousPage: Scalars['Boolean'];
-  /** When paginating backwards, the cursor to continue. */
-  readonly startCursor: Maybe<Scalars['String']>;
 };
 
 type WpUniformResourceIdentifiable = {

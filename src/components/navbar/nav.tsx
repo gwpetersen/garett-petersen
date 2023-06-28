@@ -3,8 +3,8 @@ import { graphql, StaticQuery, navigate } from "gatsby"
 import { Navbar, Nav } from "react-bootstrap"
 import styled from "styled-components"
 import "./navbar.css"
-import { isLoggedIn } from "../services/auth"
-import Emoji from "./emoji"
+import { isLoggedIn } from "../../services/auth"
+import Emoji from "../emoji/emoji"
 
 const NavItem = styled.a`
   color: white;

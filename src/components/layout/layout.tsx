@@ -1,7 +1,7 @@
 import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
-import Header from "./header"
-import Footer from "./footer"
+import Header from "../header/header"
+import Footer from "../footer/footer"
 
 const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swa"');
@@ -19,7 +19,7 @@ const LayoutWrapper = styled.main`
   padding-right: 20px;
 `
 
-const Layout = ({ children }: { children: JSX.Element }) => (
+const Layout = ({ children }: { children: JSX.Element|JSX.Element[] }) => (
   <div>
     <GlobalStyles />
     <Header />
