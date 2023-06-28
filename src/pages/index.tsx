@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import Layout from "../components/layout/layout"
 import BuiltSiteImage from "../components/subpost/subpost"
