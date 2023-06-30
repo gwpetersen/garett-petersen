@@ -30,7 +30,6 @@ const Category = () => {
       }
   `)
   const [filters, setFilters] = useState("all")
-  console.log(data)
   const categories: Edges[] = data.allWpCategory.edges
   interface TageNodes {
     tags: {

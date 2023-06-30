@@ -3,15 +3,17 @@ import styled from "styled-components"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
 import React, { useState } from "react"
-import "../gallery/gallery.css"
+import "./private.css"
 import Tab from "react-bootstrap/Tab"
 import Tabs from "react-bootstrap/Tabs"
 import "react-image-lightbox/style.css"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import Img, { FluidObject } from "gatsby-image";
 export interface Node {
   Key: string;
-  childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
+  localFile: {
+    childImageSharp: {
+      fluid: FluidObject
+    }
   }
 }
 export interface Edges {
@@ -27,14 +29,18 @@ const ImageItem: any = styled.div`
 
 const PrivateGallery = () => {
   const data = useStaticQuery(graphql`
-    query {
-      allS3ImageAsset(filter: { Key: { regex: "/.*private.*/" } }) {
+    query  {
+      allS3Object(filter: { Key: { regex: "/.*private.*/" } }) {
         edges {
           node {
             Key
-            childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED)
-          }
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1024) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
@@ -42,7 +48,7 @@ const PrivateGallery = () => {
   `)
   const [showBox, setShowBox] = React.useState(false)
   const [images, setImages] = React.useState<Edges[]>(
-    data.allS3ImageAsset.edges
+    data.allS3Object.edges
   )
   const [photoIndex, setPhotoIndex] = React.useState(0)
   const [imageLength, setImageLength] = React.useState(0)
@@ -50,7 +56,7 @@ const PrivateGallery = () => {
   const open = ({ edges, index }: { edges: Edges[]; index: number }) => {
     const images =
       category !== "all"
-        ? edges.filter(image => image.node.Key.includes(category))
+        ? edges.filter(image => image.node.Key.includes(category) && image.node.localFile)
         : edges
     setImages(images)
     setImageLength(images.length)
@@ -60,7 +66,7 @@ const PrivateGallery = () => {
 
   const edges: {
     node: Node
-  }[] = data.allS3ImageAsset.edges
+  }[] =  data.allS3Object.edges.filter((edge: { node: { localFile: string | null } }) => edge.node.localFile)
   const allCategories = edges
     .filter(({ node }) => {
       return node.Key.includes("private")
@@ -105,9 +111,9 @@ const PrivateGallery = () => {
               open({ edges, index })
             }}
           >
-            <GatsbyImage
+            <Img
             alt={''}
-            image={node.childImageSharp.gatsbyImageData}
+            fluid={node.localFile.childImageSharp.fluid}
             style={{
                 width: "100%",
                 height: "600px",
@@ -124,13 +130,12 @@ const PrivateGallery = () => {
             onCloseRequest={() => setShowBox(false)}
             animationDuration={700}
             keyRepeatLimit={500}
-            mainSrc={images[photoIndex].node.childImageSharp.gatsbyImageData.images.fallback?.src || ''}
+            mainSrc={images[photoIndex].node.localFile.childImageSharp.fluid.src || ''}
             nextSrc={
-              images[(photoIndex + 1) % imageLength].node.childImageSharp.gatsbyImageData.images.fallback?.src
+              images[(photoIndex + 1) % imageLength].node.localFile.childImageSharp.fluid.src
             }
             prevSrc={
-              images[(photoIndex + imageLength - 1) % imageLength].node
-                .childImageSharp.gatsbyImageData.images.fallback?.src
+              images[(photoIndex + imageLength - 1) % imageLength].node.localFile.childImageSharp.fluid.src
             }
             onMovePrevRequest={() =>
               setPhotoIndex((photoIndex + imageLength - 1) % imageLength)

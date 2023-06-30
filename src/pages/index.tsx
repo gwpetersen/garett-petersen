@@ -4,7 +4,6 @@ import Layout from "../components/layout/layout"
 import BuiltSiteImage from "../components/subpost/subpost"
 import Card from 'react-bootstrap/Card';
 import { graphql, useStaticQuery, navigate } from "gatsby";
-import { Container, Row } from "react-bootstrap";
 const H2 = styled.h2`
   color: #463b36;
   font-family: Lora, serif;
@@ -25,10 +24,35 @@ const BuiltSiteLink = styled.a`
   }
 `
 
+const CustomDate = styled.div`
+  font-size: 1rem;
+  display: block;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: right;
+  font-weight: 500;
+  box-sizing: border-box;
+`
+
 const Header = styled.header`
   margin-top: 2em;
   box-sizing: border-box;
   display: block;
+`
+const PostCardHover = styled.div`
+&:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+`
+
+const PostCard = styled(Card)`
+border-radius: 3px;
+background: #fff;
+margin: 8px;
+box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
 `
 
 const LatesPostHeader = styled.h2`
@@ -88,7 +112,6 @@ export default function LandingPage() {
     const dateB = b.date.split('/').reverse().join('');
     return dateA > dateB ? 1 : dateA > dateB ? -1 : 0;
   }).slice(0, 3);
-  console.log(postData)
   return (
     <Layout>
       <main>
@@ -104,20 +127,22 @@ export default function LandingPage() {
           <Header>
             <LatesPostHeader>Latest Post</LatesPostHeader>
           </Header>
-          <Container fluid className="App py-2 overflow-hidden">
-            <Row className="card-example d-flex flex-row flex-nowrap overflow-auto">
-              {postData.map(
-                ({ slug, title, content }) => (
-                  <Card onClick={() => navigate(`/post/${slug}`)} style={{ cursor: "pointer", width: '18rem' }}>
-                    <Card.Body >
-                      <Card.Title>{title.replace(/&nbsp;/g, " ")}</Card.Title>
-                      <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
-                    </Card.Body>
-                  </Card>
-                )
-              )}
-            </Row>
-          </Container>
+          {postData.map(
+            ({ slug, title, date, content }) => (
+              <PostCardHover className="card-example d-flex flex-row flex-nowrap overflow-auto">
+                <PostCard onClick={() => navigate(`/post/${slug}`)}>
+                  <Card.Body >
+                    <Card.Title>{title.replace(/&nbsp;/g, " ")}</Card.Title>
+                    <CustomDate>
+                      {new Date(date).toLocaleDateString("en-US")}
+                    </CustomDate>
+                    <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
+                  </Card.Body>
+                </PostCard>
+              </PostCardHover>
+
+            )
+          )}
         </div>
       </main>
     </Layout>
