@@ -46,7 +46,7 @@ const PostCardHover = styled.div`
 `
 
 const PostCard = styled(Card)`
-border-radius: 4px;
+border-radius: 3px;
 background: #fff;
 margin: 8px;
 box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
