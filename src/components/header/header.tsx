@@ -4,7 +4,7 @@ import NavBar from "../navbar/nav"
 const Header = () => (
   <header
     style={{
-      background: "#404040",
+      background: "black",
       top: 0,
       marginBottom: "1.45rem",
     }}

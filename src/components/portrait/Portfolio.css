@@ -1,0 +1,25 @@
+
+  
+  .bio {
+    color: grey;
+    /* font-size: 18px; */
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .main-container {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    background-color: rgb(228, 227, 227);
+  }
+  
+  h2 {
+    color: black(70, 131, 192);
+  }

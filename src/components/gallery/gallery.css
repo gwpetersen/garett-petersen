@@ -14,12 +14,12 @@
 }
 
 .myClass > li > button {
-  color: #404040 ;
+  color: black ;
   font-family: Lora, serif;
 }
 
 .mb-3 > li > button {
-  color: #404040 ;
+  color: black ;
 }
 
 .mb-3{

@@ -4,11 +4,13 @@ import Layout from "../components/layout/layout"
 import BuiltSiteImage from "../components/subpost/subpost"
 import Card from 'react-bootstrap/Card';
 import { graphql, useStaticQuery, navigate } from "gatsby";
+import PortfolioCard from "../components/portrait/PortfolioCard";
 const H2 = styled.h2`
   color: #463b36;
   font-family: Lora, serif;
   font-weight: 400;
   font-size: 2.25rem;
+  padding-top: 20px;
   margin: 0rem;
   line-height: 1.25;
   margin-bottom: 2rem;
@@ -28,7 +30,7 @@ const CustomDate = styled.div`
   font-size: 1rem;
   display: block;
   color: rgba(0, 0, 0, 0.4);
-  text-align: right;
+  text-align: left;
   font-weight: 500;
   box-sizing: border-box;
 `
@@ -40,7 +42,7 @@ const Header = styled.header`
 `
 const PostCardHover = styled.div`
 &:hover{
-  transform: scale(1.05);
+  transform: scale(1.008);
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 `
@@ -61,7 +63,7 @@ const LatesPostHeader = styled.h2`
 `
 
 const HoverImg = styled.div`
-  transition: transform 0.2s ease;
+  transition: transform 0.1s ease;
   &:hover {
     transform: scale(1.05);
     opacity: 0.5;
@@ -116,6 +118,7 @@ export default function LandingPage() {
     <Layout>
       <main>
         <div>
+          <PortfolioCard/>
           <Header>
             <H2>How I Built My Site</H2>
           </Header>
@@ -133,14 +136,13 @@ export default function LandingPage() {
                 <PostCard onClick={() => navigate(`/post/${slug}`)}>
                   <Card.Body >
                     <Card.Title>{title.replace(/&nbsp;/g, " ")}</Card.Title>
+                    <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
                     <CustomDate>
                       {new Date(date).toLocaleDateString("en-US")}
                     </CustomDate>
-                    <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
                   </Card.Body>
                 </PostCard>
               </PostCardHover>
-
             )
           )}
         </div>
@@ -149,5 +151,3 @@ export default function LandingPage() {
   )
 
 }
-
-
