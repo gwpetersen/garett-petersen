@@ -53,7 +53,7 @@ export default function Login() {
           <ErrorMessage className="text-danger">{errorMessage}</ErrorMessage>
           <Button
             variant="dark"
-            style={{ backgroundColor: "#404040" }}
+            style={{ backgroundColor: "black" }}
             size="lg"
             type="submit"
             disabled={!validateForm()}
