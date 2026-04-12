@@ -4,20 +4,14 @@ import NavBar from "../navbar/nav"
 const Header = () => (
   <header
     style={{
-      background: "black",
+      background: "#111",
+      position: "sticky",
       top: 0,
-      marginBottom: "1.45rem",
+      zIndex: 1000,
+      boxShadow: "0 1px 24px rgba(0, 0, 0, 0.5)",
     }}
   >
-    <div
-      style={{
-        margin: "0 auto",
-        maxWidth: 960,
-        minHeight: "10px",
-      }}
-    >
-      <NavBar />
-    </div>
+    <NavBar />
   </header>
 )
 

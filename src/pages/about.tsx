@@ -29,21 +29,12 @@ export default function LandingPage() {
                 }
               }
             }
-          },
-          allWpPage(filter: {title: {eq: "About"}}) {
-            nodes {
-              content
-            }
           }
     }
   `)
     const edges: {
         node: Node
     }[] = data.allS3Object.edges.filter((edge: { node: { localFile: string | null } }) => edge.node.localFile)
-    const allPages: {
-        content: string
-    }[] = data.allWpPage.nodes.filter((node: { content: string | null }) => node.content)
-    const contentData = allPages[0].content;
     return (
         <Layout>
             <div>
@@ -51,7 +42,9 @@ export default function LandingPage() {
             </div>
             <h2 className="header">About Me</h2>
             <div className="bio-container">
-                <div className="bio" dangerouslySetInnerHTML={{ __html: contentData }} />
+                <div className="bio">
+                    {/* Add your bio content here */}
+                </div>
             </div>
             <h2 className="header">Recently Used Tech</h2>
             <div className='center'>

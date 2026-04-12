@@ -17,6 +17,7 @@ const LayoutWrapper = styled.main`
   height: auto !important;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 32px;
 `
 
 const Layout = ({ children }: { children: JSX.Element|JSX.Element[] }) => (

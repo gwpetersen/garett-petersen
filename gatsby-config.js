@@ -9,7 +9,6 @@ process.env["AWS_REGION"] = process.env.NETLIFY_AWS_REGION
 const {
   AWS_ACCESS_KEY_ID: accessKeyId,
   AWS_SECRET_ACCESS_KEY: secretAccessKey,
-  AWS_REGION: awsRegion,
 } = process.env
 
 module.exports = {
@@ -37,19 +36,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-s3-image",
-      options: {
-        bucketName: "garett.petersen.media",
-        aws: {
-          accessKeyId: accessKeyId,
-          secretAccessKey: secretAccessKey,
-          region: awsRegion
-        },
-        
-        protocol: "http", // [optional] Default to `https`.
-      },
-    },
-    {
       resolve: `gatsby-plugin-env-variables`,
       options: {
         allowList: ["SITE_USER", "SITE_PASSWORD"],
@@ -71,26 +57,6 @@ module.exports = {
         rule: {
           include: /assets/,
         },
-      },
-    },
-    {
-      resolve: "gatsby-source-wordpress",
-      options: {
-        /*
-         * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
-         * Example : 'demo.wp-api.org' or 'www.example-site.com'
-         */
-        url: 'http://wp.garettpetersen.com/graphql' || `https://localhost/graphql`,
-        schema: {
-          //Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".
-          typePrefix: `Wp`,
-        },
-        verbose: true,
-        develop: {
-          //caches media files outside of Gatsby's default cache an thus allows them to persist through a cache reset.
-          hardCacheMediaFiles: true,
-        },
-       
       },
     },
     {

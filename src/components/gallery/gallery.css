@@ -1,38 +1,22 @@
 .image-grid {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.image-item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 900px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-.image-grid .image-item:nth-child(4n) {
-  grid-column-end: span 3;
 }
 
-@media screen and (max-width:900px){
-  .image-grid{
-    display: block;
+@media screen and (max-width: 500px) {
+  .image-grid {
+    grid-template-columns: 1fr;
   }
-}
-
-.myClass > li > button {
-  color: black ;
-  font-family: Lora, serif;
-}
-
-.mb-3 > li > button {
-  color: black ;
-}
-
-.mb-3{
-  color: white ;
-}
-
-li > .active {
-  background-color: grey;
-}
-
-.myClass > li > button:hover {
-  text-decoration: none;
-  cursor: pointer;
-  background-color: gray;
-  color: black;
 }

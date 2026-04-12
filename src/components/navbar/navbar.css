@@ -1,6 +1,1 @@
-.navbar {
-    background-color: black;
-  }
-.color-nav-collapse{
-    background-color: white;
-}
+/* navbar.css intentionally empty — all styles in nav.tsx styled-components */
