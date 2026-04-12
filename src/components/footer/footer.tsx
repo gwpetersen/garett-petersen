@@ -56,7 +56,7 @@ const Footer = () => (
       className="footer-copyright text-center py-3"
       style={{ fontSize: "1.2rem" }}
     >
-      © 2020 Copyright:
+      © {new Date().getFullYear()} Copyright:
       <CopyRight href="/"> Garett Petersen</CopyRight>
     </div>
   </footer>

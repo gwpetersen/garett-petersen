@@ -1,35 +1,64 @@
-import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
-import Lightbox from "react-image-lightbox"
-import "react-image-lightbox/style.css"
 import React, { useState } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import Img, { FluidObject } from "gatsby-image"
+import styled from "styled-components"
+import Lightbox, { LightboxImage } from "../gallery/Lightbox"
 import "./private.css"
-import Tab from "react-bootstrap/Tab"
-import Tabs from "react-bootstrap/Tabs"
-import "react-image-lightbox/style.css"
-import Img, { FluidObject } from "gatsby-image";
-export interface Node {
-  Key: string;
+
+interface PrivateNode {
+  Key: string
   localFile: {
     childImageSharp: {
-      fluid: FluidObject
+      fluid: FluidObject & { src: string }
     }
   }
 }
-export interface Edges {
-  node: Node
-}
-const ImageItem: any = styled.div`
-  :hover {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+
+const FilterBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+`
+
+const FilterPill = styled.button<{ active: boolean }>`
+  background: ${({ active }) => (active ? "#1a1a1a" : "transparent")};
+  color: ${({ active }) => (active ? "white" : "#555")};
+  border: 1px solid ${({ active }) => (active ? "#1a1a1a" : "#d0d0d0")};
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-family: "Playfair Display", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: ${({ active }) => (active ? "#1a1a1a" : "#f5f5f5")};
+    border-color: ${({ active }) => (active ? "#1a1a1a" : "#aaa")};
+    color: ${({ active }) => (active ? "white" : "#1a1a1a")};
+  }
+`
+
+const ImageItem = styled.div`
+  overflow: hidden;
+  cursor: pointer;
+  background: #f0f0f0;
+
+  &:hover .gatsby-image-wrapper {
+    transform: scale(1.04);
+  }
+
+  .gatsby-image-wrapper {
+    transition: transform 0.4s ease;
+    height: 100%;
   }
 `
 
 const PrivateGallery = () => {
   const data = useStaticQuery(graphql`
-    query  {
+    query {
       allS3Object(filter: { Key: { regex: "/.*private.*/" } }) {
         edges {
           node {
@@ -46,106 +75,71 @@ const PrivateGallery = () => {
       }
     }
   `)
-  const [showBox, setShowBox] = React.useState(false)
-  const [images, setImages] = React.useState<Edges[]>(
-    data.allS3Object.edges
-  )
-  const [photoIndex, setPhotoIndex] = React.useState(0)
-  const [imageLength, setImageLength] = React.useState(0)
-  const [category, setCategory] = useState("all")
-  const open = ({ edges, index }: { edges: Edges[]; index: number }) => {
-    const images =
-      category !== "all"
-        ? edges.filter(image => image.node.Key.includes(category) && image.node.localFile)
-        : edges
-    setImages(images)
-    setImageLength(images.length)
-    setShowBox(true)
-    setPhotoIndex(index)
-  }
 
-  const edges: {
-    node: Node
-  }[] =  data.allS3Object.edges.filter((edge: { node: { localFile: string | null } }) => edge.node.localFile)
-  const allCategories = edges
-    .filter(({ node }) => {
-      return node.Key.includes("private")
-    })
-    .map(({ node }) => {
-      return node.Key.split("/")[1]
-    })
-  allCategories.push("all")
-  const categories = [...new Set(allCategories)]
-  const imageCategory = categories.map(category => {
-    return {
-      cat: category,
-      edges:
-        category !== "all"
-          ? edges.filter(image => image.node.Key.includes(category))
-          : edges,
-    }
-  })
-  const imagesBucket = imageCategory.find(bucket => bucket.cat === category)
+  const [activeCategory, setActiveCategory] = useState("all")
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const allEdges: { node: PrivateNode }[] = data.allS3Object.edges.filter(
+    (edge: { node: { localFile: string | null } }) => edge.node.localFile
+  )
+
+  const categories: string[] = [
+    "all",
+    ...Array.from(
+      new Set(
+        allEdges
+          .filter(({ node }) => node.Key.includes("private"))
+          .map(({ node }) => node.Key.split("/")[1])
+          .filter(Boolean)
+      )
+    ),
+  ]
+
+  const filteredEdges =
+    activeCategory === "all"
+      ? allEdges
+      : allEdges.filter(({ node }) => node.Key.includes(activeCategory))
+
+  const lightboxImages: LightboxImage[] = filteredEdges.map(({ node }) => node)
+
   return (
     <div>
-      <Tabs
-        id="tab"
-        activeKey={category}
-        className="myClass"
-        onSelect={category => setCategory(category || "")}
-      >
-        {imageCategory.map(({ cat }) => (
-          <Tab className="tabs" key={`tab-${cat}`}  eventKey={cat} title={cat.toUpperCase()}>
-            {" "}
-          </Tab>
+      <FilterBar>
+        {categories.map(cat => (
+          <FilterPill
+            key={cat}
+            active={activeCategory === cat}
+            onClick={() => setActiveCategory(cat)}
+          >
+            {cat}
+          </FilterPill>
         ))}
-      </Tabs>
+      </FilterBar>
+
       <div className="image-grid">
-        {imagesBucket?.edges.map(({ node }, index) => (
+        {filteredEdges.map(({ node }, index) => (
           <ImageItem
+            key={node.Key}
             className="image-item"
-            id={node.Key}
-            data-foo={index}
-            key={`Image-${index}`}
-            onClick={() => {
-              open({ edges, index })
-            }}
+            onClick={() => setLightboxIndex(index)}
           >
             <Img
-            alt={''}
-            fluid={node.localFile.childImageSharp.fluid}
-            style={{
-                width: "100%",
-                height: "600px",
-                maxHeight: "600px",
-                objectFit: "cover",
-              }}
+              alt=""
+              fluid={node.localFile.childImageSharp.fluid}
+              style={{ height: "100%", width: "100%" }}
+              imgStyle={{ objectFit: "cover" }}
             />
           </ImageItem>
         ))}
       </div>
-      <div>
-        {showBox && (
-          <Lightbox
-            onCloseRequest={() => setShowBox(false)}
-            animationDuration={700}
-            keyRepeatLimit={500}
-            mainSrc={images[photoIndex].node.localFile.childImageSharp.fluid.src || ''}
-            nextSrc={
-              images[(photoIndex + 1) % imageLength].node.localFile.childImageSharp.fluid.src
-            }
-            prevSrc={
-              images[(photoIndex + imageLength - 1) % imageLength].node.localFile.childImageSharp.fluid.src
-            }
-            onMovePrevRequest={() =>
-              setPhotoIndex((photoIndex + imageLength - 1) % imageLength)
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % imageLength)
-            }
-          />
-        )}
-      </div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={lightboxImages}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
     </div>
   )
 }
