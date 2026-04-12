@@ -475,7 +475,6 @@ function UploadForm() {
           ref={fileInputRef}
           type="file"
           accept="image/*"
-          capture="environment"
           onChange={e => handleFile(e.target.files?.[0] ?? null)}
         />
         {preview && <Preview src={preview} alt="preview" />}
